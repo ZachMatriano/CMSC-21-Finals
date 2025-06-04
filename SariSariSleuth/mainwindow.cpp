@@ -14,6 +14,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     
+    QVector<QPair<QPushButton*, QWidget*>> tabMappings = {
+        {ui->sales_btn, ui->sales},
+        {ui->transt_btn, ui->transactions},
+        {ui->logging_btn, ui->stocklogging},
+        {ui->misctab, ui->tab4}
+    };
+
+    for (const auto& pair : tabMappings) {
+        connect(pair.first, &QPushButton::clicked, this, [=]() {
+            ui->tabs->setCurrentWidget(pair.second);
+        });
+    }
+
     // Set up the table view for stock
     ui->stockTableView->setModel(stockModel);
     ui->stockTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
