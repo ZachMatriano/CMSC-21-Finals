@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "stockmodel.h"
+#include "transactionmodel.h"
+#include "confirmedtransactionmodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,10 +25,16 @@ private slots:
     void onEditButtonClicked();
     void onDeleteButtonClicked();
     void onFilterTextChanged(const QString &text);
+    void onOpenCameraClicked();
+    void onManualAddClicked();
+    void onConfirmTransactionClicked();
+    void onDeleteTransactionClicked();
 
 private:
     Ui::MainWindow *ui;
     StockModel *stockModel;
+    TransactionModel *transactionModel;
+    ConfirmedTransactionModel *confirmedTransactionModel;
 };
 
 #endif // MAINWINDOW_H

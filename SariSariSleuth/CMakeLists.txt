@@ -21,6 +21,12 @@ set(PROJECT_SOURCES
         mainwindow.ui
         stockmodel.cpp
         stockmodel.h
+        transactionmodel.cpp
+        transactionmodel.h
+        itemselectiondialog.cpp
+        itemselectiondialog.h
+        confirmedtransactionmodel.cpp
+        confirmedtransactionmodel.h
         ${TS_FILES}
 )
 
