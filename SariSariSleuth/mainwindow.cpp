@@ -51,12 +51,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
 
     // === SHAPES ===
-    // Example: customize shape 1
-    if (CustomShape* shape = qobject_cast<CustomShape*>(ui->shape1)) {
-        ShapeStyle style = { ShapeType::RoundedRect, QColor("#66bbff"), 25 };
-        shape->setShapeStyle(style);
+    if (CustomShape* container_buttons = qobject_cast<CustomShape*>(ui->container_buttons)) {
+        ShapeStyle style = { ShapeType::RoundedRect, QColor(255,255,255), 10 };   // ShapeStyle style = {Shape(circle or rect), color, roundness}
+        container_buttons->setShapeStyle(style);
     }
-
 }
 
 MainWindow::~MainWindow()

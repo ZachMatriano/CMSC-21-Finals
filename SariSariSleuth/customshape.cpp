@@ -4,6 +4,8 @@
 
 CustomShape::CustomShape(QWidget *parent): QWidget(parent) {
     setAttribute(Qt::WA_TransparentForMouseEvents);
+    setAttribute(Qt::WA_NoSystemBackground);
+    setAttribute(Qt::WA_TranslucentBackground);
     shapeStyle = { ShapeType::Circle, QColor(255,0,255), 0 }; // default color
 }
 

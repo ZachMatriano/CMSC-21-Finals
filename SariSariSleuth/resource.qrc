@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>main-bg.png</file>
+        <file>sold.png</file>
+    </qresource>
+</RCC>
