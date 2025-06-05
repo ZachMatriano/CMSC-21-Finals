@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
         itemselectiondialog.h
         confirmedtransactionmodel.cpp
         confirmedtransactionmodel.h
+        customshape.h
+        customshape.cpp
         ${TS_FILES}
 )
 
@@ -34,7 +36,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SariSariSleuth
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET SariSariSleuth APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -59,6 +60,7 @@ else()
 endif()
 
 target_link_libraries(SariSariSleuth PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_include_directories(SariSariSleuth PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

@@ -5,6 +5,7 @@
 #include "stockmodel.h"
 #include "transactionmodel.h"
 #include "confirmedtransactionmodel.h"
+#include "customshape.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

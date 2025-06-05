@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "customshape.h"
 #include "./ui_mainwindow.h"
 #include "itemselectiondialog.h"
 #include <QMessageBox>
@@ -48,6 +49,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect signals and slots for transaction management
     connect(ui->confirmButton, &QPushButton::clicked, this, &MainWindow::onConfirmTransactionClicked);
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
+
+    // === SHAPES ===
+    // Example: customize shape 1
+    if (CustomShape* shape = qobject_cast<CustomShape*>(ui->shape1)) {
+        ShapeStyle style = { ShapeType::RoundedRect, QColor("#66bbff"), 25 };
+        shape->setShapeStyle(style);
+    }
+
 }
 
 MainWindow::~MainWindow()
