@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     , confirmedTransactionModel(new ConfirmedTransactionModel(this))
     , analyticsModel(new AnalyticsModel(this))
     , howMuchModel(new HowMuchModel(this))
-    , qrCodeGenerator(new QrCodeGenerator(this))
 {
     ui->setupUi(this);
     
@@ -50,16 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->daysToStockSpinBox, QOverload<int>::of(&QSpinBox::valueChanged),
             this, &MainWindow::onDaysToStockChanged);
 
-    // Connect stock model changes to QR code updates
-    connect(stockModel, &StockModel::dataChanged, this, &MainWindow::updateQRCode);
-    connect(stockModel, &StockModel::rowsInserted, this, &MainWindow::updateQRCode);
-    connect(stockModel, &StockModel::rowsRemoved, this, &MainWindow::updateQRCode);
-
     // Initialize analytics with current data
     onTimePeriodChanged(0); // This will load data for LastWeek period
-
-    // Initial QR code update
-    updateQRCode();
 }
 
 // DESTRUCTOR
@@ -294,11 +285,4 @@ void MainWindow::onDaysToStockChanged(int days)
     }
     
     howMuchModel->updateRecommendations(analytics, days, stockModel);
-}
-
-void MainWindow::updateQRCode() {
-    QString qrString = stockModel->generateQRCodeString();
-    QImage qrImage = qrCodeGenerator->generateQr(qrString, 400);  // Generate larger base image
-    QPixmap qrPixmap = QPixmap::fromImage(qrImage.scaled(600, 600, Qt::IgnoreAspectRatio, Qt::SmoothTransformation), Qt::ColorOnly);
-    ui->qrCodeLabel->setPixmap(qrPixmap);
 }

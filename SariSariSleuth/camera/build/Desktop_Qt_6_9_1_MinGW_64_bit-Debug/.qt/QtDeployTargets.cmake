@@ -1,3 +1,0 @@
-set(__QT_DEPLOY_TARGET_appqt6project_FILE C:/Users/Zachary/Downloads/Qt-QML-QR-code-scanner-qt6/Qt-QML-QR-code-scanner-qt6/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/appqt6project.exe)
-set(__QT_DEPLOY_TARGET_appqt6project_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_appqt6project_RUNTIME_DLLS C:/Qt/6.9.1/mingw_64/bin/Qt6Quick.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6Multimedia.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6QmlMeta.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6QmlWorkerScript.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6QmlModels.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6Qml.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6OpenGL.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6Network.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.9.1/mingw_64/bin/Qt6Core.dll)

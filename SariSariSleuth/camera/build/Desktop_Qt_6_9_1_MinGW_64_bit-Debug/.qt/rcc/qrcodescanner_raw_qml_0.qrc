@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qrcodescanner/">
-    <file alias="main.qml">C:/Users/Zachary/Downloads/Qt-QML-QR-code-scanner-qt6/Qt-QML-QR-code-scanner-qt6/main.qml</file>
-  </qresource>
-</RCC>
-
