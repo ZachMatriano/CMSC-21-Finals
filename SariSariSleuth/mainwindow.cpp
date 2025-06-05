@@ -5,12 +5,15 @@
 #include <QInputDialog>
 #include <algorithm>
 
+// CONSTRUCTOR
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , stockModel(new StockModel(this))
     , transactionModel(new TransactionModel(this))
     , confirmedTransactionModel(new ConfirmedTransactionModel(this))
+    , analyticsModel(new AnalyticsModel(this))
+    , howMuchModel(new HowMuchModel(this))
 {
     ui->setupUi(this);
     
@@ -34,6 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
     // Set up the table view for transactions
     ui->transactionTableView->setModel(transactionModel);
     ui->transactionTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Set up the analytics list views
+    ui->productsToListView->setModel(analyticsModel);
+    ui->howMuchToListView->setModel(howMuchModel);
     
     // Connect signals and slots for stock management
     connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
@@ -83,6 +90,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// TAB 3
 void MainWindow::onAddButtonClicked() {
     bool ok;
     QString productName = QInputDialog::getText(this, "Add Product", "Product Name:", QLineEdit::Normal, "", &ok);
@@ -98,7 +106,7 @@ void MainWindow::onAddButtonClicked() {
         return;
 
     StockItem item;
-    std::vector<int> ids;
+    std::vector<int> ids; // Unique ID but also slot filling
     for (int i = 0; i < this->stockModel->rowCount(); i++) {
         ids.push_back(this->stockModel->getItem(i).id);
     }
@@ -165,14 +173,14 @@ void MainWindow::onFilterTextChanged(const QString &text) {
     stockModel->filterItems(text);
 }
 
+// TAB 1
 void MainWindow::onOpenCameraClicked()
 {
     // TODO: Implement camera functionality
     QMessageBox::information(this, "Camera", "Camera functionality will be implemented in the next phase.");
 }
 
-void MainWindow::onManualAddClicked()
-{
+void MainWindow::onManualAddClicked() {
     ItemSelectionDialog dialog(stockModel, this);
     if (dialog.exec() == QDialog::Accepted) {
         StockItem selectedItem = dialog.getSelectedItem();
@@ -183,6 +191,7 @@ void MainWindow::onManualAddClicked()
     }
 }
 
+// TAB 2
 void MainWindow::onConfirmTransactionClicked()
 {
     QModelIndex currentIndex = ui->transactionTableView->currentIndex();
@@ -192,25 +201,43 @@ void MainWindow::onConfirmTransactionClicked()
     }
 
     Transaction transaction = transactionModel->getTransaction(currentIndex.row());
-    
-    // Add to confirmed transactions
-    confirmedTransactionModel->addTransaction(transaction.item, transaction.quantity);
 
     // Update stock
-    StockItem item = transaction.item;
-    item.remaining -= transaction.quantity;
-    item.sold += transaction.quantity;
-    
-    // Find the item in the stock model and update it
+    StockItem item;
     for (int i = 0; i < stockModel->rowCount(); i++) {
-        if (stockModel->getItem(i).id == item.id) {
-            stockModel->updateItem(i, item);
-            break;
+        if (transaction.item.id == stockModel->getItem(i).id) {
+            item = stockModel->getItem(i);
+            if (item.remaining < transaction.quantity) {
+                QMessageBox::StandardButton reply = QMessageBox::warning(this, "Low Stock Warning",
+                    QString("This transaction would reduce stock below zero.\n"
+                        "Current remaining stock: %1\n"
+                        "Transaction quantity: %2\n\n"
+                        "Would you like to continue? The remaining stock will be set to 0.").arg(item.remaining).arg(transaction.quantity),
+                QMessageBox::Yes | QMessageBox::No);
+                if (reply == QMessageBox::No) {
+                    break;
+                }
+                item.sold += item.remaining;
+                confirmedTransactionModel->addTransaction(transaction.item, item.remaining);
+                item.remaining = 0;
+                stockModel->updateItem(i, item);
+                break;
+            } else {
+                item.remaining -= transaction.quantity;
+                item.sold += transaction.quantity;
+                confirmedTransactionModel->addTransaction(transaction.item, transaction.quantity);
+                stockModel->updateItem(i, item);
+                break;
+            }
         }
     }
 
     // Remove from pending transactions
     transactionModel->removeTransaction(currentIndex.row());
+
+    // Update analytics with current time period
+    int currentPeriodIndex = ui->timePeriodComboBox->currentIndex();
+    onTimePeriodChanged(currentPeriodIndex);
 }
 
 void MainWindow::onDeleteTransactionClicked()
@@ -225,4 +252,69 @@ void MainWindow::onDeleteTransactionClicked()
     if (reply == QMessageBox::Yes) {
         transactionModel->removeTransaction(currentIndex.row());
     }
+}
+
+// TAB 4
+void MainWindow::onTimePeriodChanged(int index)
+{
+    TimePeriod period;
+    switch (index) {
+        case 0: period = TimePeriod::LastWeek; break;
+        case 1: period = TimePeriod::LastMonth; break;
+        case 2: period = TimePeriod::LastYear; break;
+        default: period = TimePeriod::LastWeek;
+    }
+    
+    // Get all transactions from confirmedTransactionModel
+    QVector<ConfirmedTransaction> transactions;
+    for (int i = 0; i < confirmedTransactionModel->rowCount(); ++i) {
+        transactions.append(confirmedTransactionModel->getTransaction(i));
+    }
+    
+    analyticsModel->updateAnalytics(transactions, period);
+    
+    // Update the how much to stock list
+    QVector<ProductAnalytics> analytics;
+    for (int i = 0; i < analyticsModel->rowCount(); ++i) {
+        QModelIndex idx = analyticsModel->index(i);
+        QString text = analyticsModel->data(idx).toString();
+        QStringList parts = text.split(" - Sold: ");
+        QString name = parts[0];
+        QStringList soldParts = parts[1].split(" (Rate: ");
+        int sold = soldParts[0].toInt();
+        QString rateStr = soldParts[1].split("/day")[0];
+        double rate = rateStr.toDouble();
+        
+        ProductAnalytics analytic;
+        analytic.productName = name;
+        analytic.totalSold = sold;
+        analytic.salesRate = rate;
+        analytics.append(analytic);
+    }
+    
+    howMuchModel->updateRecommendations(analytics, ui->daysToStockSpinBox->value(), stockModel);
+}
+
+void MainWindow::onDaysToStockChanged(int days)
+{
+    // Get current analytics data
+    QVector<ProductAnalytics> analytics;
+    for (int i = 0; i < analyticsModel->rowCount(); ++i) {
+        QModelIndex idx = analyticsModel->index(i);
+        QString text = analyticsModel->data(idx).toString();
+        QStringList parts = text.split(" - Sold: ");
+        QString name = parts[0];
+        QStringList soldParts = parts[1].split(" (Rate: ");
+        int sold = soldParts[0].toInt();
+        QString rateStr = soldParts[1].split("/day")[0];
+        double rate = rateStr.toDouble();
+        
+        ProductAnalytics analytic;
+        analytic.productName = name;
+        analytic.totalSold = sold;
+        analytic.salesRate = rate;
+        analytics.append(analytic);
+    }
+    
+    howMuchModel->updateRecommendations(analytics, days, stockModel);
 }

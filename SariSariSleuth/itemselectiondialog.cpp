@@ -2,10 +2,7 @@
 #include <QLabel>
 #include <QItemSelectionModel>
 
-ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent)
-    : QDialog(parent)
-    , stockModel(model)
-{
+ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : QDialog(parent) , stockModel(model) {
     setWindowTitle("Select Item");
     setMinimumWidth(400);
 
@@ -20,7 +17,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent)
     // Create quantity spinbox
     quantitySpinBox = new QSpinBox(this);
     quantitySpinBox->setMinimum(1);
-    quantitySpinBox->setMaximum(1000);
+    quantitySpinBox->setMaximum(9999);
     quantitySpinBox->setValue(1);
 
     // Create buttons
@@ -38,28 +35,24 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent)
     mainLayout->addLayout(buttonLayout);
 
     // Connect signals and slots
-    connect(tableView->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, &ItemSelectionDialog::onItemSelected);
+    connect(tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ItemSelectionDialog::onItemSelected);
     connect(acceptButton, &QPushButton::clicked, this, &ItemSelectionDialog::onAcceptClicked);
     connect(cancelButton, &QPushButton::clicked, this, &ItemSelectionDialog::onCancelClicked);
 }
 
-void ItemSelectionDialog::onItemSelected(const QItemSelection &selected, const QItemSelection &deselected)
-{
+void ItemSelectionDialog::onItemSelected(const QItemSelection &selected, const QItemSelection &deselected) {
     if (!selected.indexes().isEmpty()) {
         QModelIndex index = selected.indexes().first();
         selectedItem = stockModel->getItem(index.row());
     }
 }
 
-void ItemSelectionDialog::onAcceptClicked()
-{
-    if (tableView->selectionModel()->hasSelection()) {
+void ItemSelectionDialog::onAcceptClicked() {
+    if (tableView->selectionModel()->hasSelection()) {  // Guard
         accept();
     }
 }
 
-void ItemSelectionDialog::onCancelClicked()
-{
+void ItemSelectionDialog::onCancelClicked() {
     reject();
 } 

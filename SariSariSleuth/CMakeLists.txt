@@ -27,6 +27,10 @@ set(PROJECT_SOURCES
         itemselectiondialog.h
         confirmedtransactionmodel.cpp
         confirmedtransactionmodel.h
+        analyticsmodel.cpp
+        analyticsmodel.h
+        howmuchmodel.cpp
+        howmuchmodel.h
         customshape.h
         customshape.cpp
         ${TS_FILES}
