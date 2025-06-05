@@ -3,6 +3,8 @@
 #include <QDir>
 #include <fstream>
 #include <sstream>
+#include <vector>
+#include <algorithm>
 
 // CONSTRUCTOR
 TransactionModel::TransactionModel(QObject *parent) : QAbstractTableModel(parent), nextTransactionId(1) {
@@ -60,12 +62,25 @@ QVariant TransactionModel::headerData(int section, Qt::Orientation orientation, 
 
 // ACTUAL IMPLEMENTED FUNCTIONS
 void TransactionModel::addTransaction(const StockItem &item, int quantity) {
-
-    // Called by onManualAddClicked and onConfirmTransactionClicked
     beginInsertRows(QModelIndex(), transactions.size(), transactions.size());
     
     Transaction transaction;
-    transaction.transactionId = nextTransactionId++;
+    
+    // Find the first available transaction ID
+    std::vector<int> ids;
+    for (const Transaction& t : transactions) {
+        ids.push_back(t.transactionId);
+    }
+    int newId = 1;
+    for (int i = 0; i < ids.size(); i++) {
+        if(std::find(ids.begin(), ids.end(), newId) != ids.end()) {
+            newId++;
+        } else {
+            break;
+        }
+    }
+    
+    transaction.transactionId = newId;
     transaction.item = item;
     transaction.quantity = quantity;
     transaction.timestamp = QDateTime::currentDateTime();

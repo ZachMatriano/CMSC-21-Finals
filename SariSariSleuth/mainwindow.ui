@@ -21,8 +21,7 @@
     <item>
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(211, 211, 211);
-				</string>
+       <string notr="true">background-color: rgb(211, 211, 211);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -40,8 +39,7 @@
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 25px;</string>
+        <string notr="true">background-color: rgb(255, 255, 255); border-radius: 25px;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Shape::StyledPanel</enum>
@@ -84,9 +82,10 @@ border-radius: 25px;</string>
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb();
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255)</string>
+            <string notr="true">background-color: rgb(); 
+             font: 700 9pt &quot;Montserrat&quot;;
+             color: rgb(0, 71, 255)
+            </string>
            </property>
            <property name="text">
             <string>Sales</string>
@@ -119,8 +118,8 @@ color: rgb(0, 71, 255)</string>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb();
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255)</string>
+             font: 700 9pt &quot;Montserrat&quot;;
+             color: rgb(0, 71, 255)</string>
            </property>
            <property name="text">
             <string>Transactions</string>
@@ -153,8 +152,8 @@ color: rgb(0, 71, 255)</string>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb();
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255)</string>
+             font: 700 9pt &quot;Montserrat&quot;;
+             color: rgb(0, 71, 255)</string>
            </property>
            <property name="text">
             <string>Stock Logging</string>
@@ -187,8 +186,8 @@ color: rgb(0, 71, 255)</string>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb();
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255)</string>
+             font: 700 9pt &quot;Montserrat&quot;;
+             color: rgb(0, 71, 255)</string>
            </property>
            <property name="text">
             <string>Analytics</string>
@@ -256,9 +255,9 @@ color: rgb(0, 71, 255)</string>
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255,255,255);
-border-radius: 15px;
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255);</string>
+               border-radius: 15px;
+               font: 700 9pt &quot;Montserrat&quot;;
+               color: rgb(0, 71, 255);</string>
              </property>
              <property name="text">
               <string>Manual Add</string>
@@ -280,9 +279,7 @@ color: rgb(0, 71, 255);</string>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255,255,255);
-border-radius: 15px
-</string>
+          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px </string>
          </property>
          <widget class="QTableView" name="transactionTableView">
           <property name="geometry">
@@ -292,6 +289,13 @@ border-radius: 15px
             <width>651</width>
             <height>301</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 71, 255);
+             background-color: rgb(255, 255, 255);
+             selection-background-color: rgb(230, 240, 255);
+             selection-color: rgb(0, 71, 255);
+           </string>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
@@ -303,7 +307,7 @@ border-radius: 15px
            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
           </property>
           <property name="sortingEnabled">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
          <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -332,9 +336,10 @@ border-radius: 15px
              </property>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 0, 0);
-border-radius: 15px;
-font: 700 12pt &quot;Montserrat&quot;;
-color: rgb(255,255,255);</string>
+                border-radius: 15px;
+                font: 700 12pt &quot;Montserrat&quot;;
+                color: rgb(255,255,255);
+              </string>
              </property>
              <property name="text">
               <string>Delete </string>
@@ -371,10 +376,12 @@ color: rgb(255,255,255);</string>
               <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(38, 255, 0);
-border-radius: 15px;
-font: 700 12pt &quot;Montserrat&quot;;
-color: rgb(23, 153, 0);</string>
+              <string notr="true">
+                background-color: rgb(38, 255, 0);
+                border-radius: 15px;
+                font: 700 12pt &quot;Montserrat&quot;;
+                color: rgb(23, 153, 0);
+              </string>
              </property>
              <property name="text">
               <string>Confirm</string>
@@ -392,8 +399,11 @@ color: rgb(23, 153, 0);</string>
            <x>19</x>
            <y>19</y>
            <width>671</width>
-           <height>181</height>
+           <height>391</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px</string>
          </property>
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
@@ -406,16 +416,18 @@ color: rgb(23, 153, 0);</string>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Filter:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QLineEdit" name="filterLineEdit">
+             <property name="styleSheet">
+              <string notr="true">
+                background-color: rgb(211, 211, 211);
+                border: 2px solid rgb(0, 71, 255);
+                border-radius: 5px;
+                color: rgb(255, 255, 255);
+                padding: 2px;
+               </string>
+             </property>
              <property name="placeholderText">
-              <string>Search products...</string>
+              <string>Filter by product name...</string>
              </property>
             </widget>
            </item>
@@ -427,8 +439,16 @@ color: rgb(23, 153, 0);</string>
             <x>10</x>
             <y>40</y>
             <width>651</width>
-            <height>101</height>
+            <height>301</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            color: rgb(0, 71, 255);
+            background-color: rgb(255, 255, 255);
+            selection-background-color: rgb(230, 240, 255);
+            selection-color: rgb(0, 71, 255);
+           </string>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
@@ -440,34 +460,36 @@ color: rgb(23, 153, 0);</string>
            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
           </property>
           <property name="sortingEnabled">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="horizontalLayoutWidget_4">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>152</y>
-            <width>651</width>
-            <height>22</height>
+            <x>390</x>
+            <y>345</y>
+            <width>271</width>
+            <height>41</height>
            </rect>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
             <widget class="QPushButton" name="addButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(38, 255, 0);
+                border-radius: 15px;
+                font: 700 12pt &quot;Montserrat&quot;;
+                color: rgb(255, 255, 255);</string>
+             </property>
              <property name="text">
               <string>Add</string>
              </property>
@@ -475,6 +497,21 @@ color: rgb(23, 153, 0);</string>
            </item>
            <item>
             <widget class="QPushButton" name="editButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(211, 211, 211);
+                border-radius: 15px;
+                font: 700 12pt &quot;Montserrat&quot;;
+                color: rgb(255, 255, 255);</string>
+             </property>
              <property name="text">
               <string>Edit</string>
              </property>
@@ -482,6 +519,21 @@ color: rgb(23, 153, 0);</string>
            </item>
            <item>
             <widget class="QPushButton" name="deleteButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 0, 0);
+                border-radius: 15px;
+                font: 700 12pt &quot;Montserrat&quot;;
+                color: rgb(255, 255, 255);</string>
+             </property>
              <property name="text">
               <string>Delete</string>
              </property>
@@ -498,17 +550,28 @@ color: rgb(23, 153, 0);</string>
            <x>19</x>
            <y>19</y>
            <width>671</width>
-           <height>241</height>
+           <height>430</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px</string>
          </property>
          <widget class="QGroupBox" name="productsToStockGroup">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>0</y>
+            <y>10</y>
             <width>651</width>
-            <height>121</height>
+            <height>181</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: rgb(255,255,255);
+            color: rgb(0, 71, 255);
+            font: 700 9pt &quot;Montserrat&quot;;
+            border: 1px solid rgb(211, 211, 211);
+           </string>
           </property>
           <property name="title">
            <string>Products to Stock</string>
@@ -525,6 +588,15 @@ color: rgb(23, 153, 0);</string>
              </item>
              <item>
               <widget class="QComboBox" name="timePeriodComboBox">
+               <property name="styleSheet">
+                <string notr="true">
+                 background-color: rgb(211, 211, 211);
+                 border: 2px solid rgb(0, 71, 255);
+                 border-radius: 5px;
+                 color: rgb(0, 71, 255);
+                 padding: 2px;
+                </string>
+               </property>
                <item>
                 <property name="text">
                  <string>Last Week</string>
@@ -546,8 +618,20 @@ color: rgb(23, 153, 0);</string>
            </item>
            <item>
             <widget class="QListView" name="productsToListView">
+             <property name="styleSheet">
+              <string notr="true">
+                color: rgb(0, 71, 255);
+                background-color: rgb(255, 255, 255);
+                font: 9pt &quot;Montserrat&quot;;
+                selection-background-color: rgb(230, 240, 255);
+                selection-color: rgb(0, 71, 255);
+              </string>
+             </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
              </property>
             </widget>
            </item>
@@ -557,10 +641,17 @@ color: rgb(23, 153, 0);</string>
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>130</y>
+            <y>200</y>
             <width>651</width>
-            <height>101</height>
+            <height>181</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255,255,255);
+            color: rgb(0, 71, 255);
+            font: 700 9pt &quot;Montserrat&quot;;
+            border: 1px solid rgb(211, 211, 211);
+           </string>
           </property>
           <property name="title">
            <string>How Much to Stock</string>
@@ -577,6 +668,15 @@ color: rgb(23, 153, 0);</string>
              </item>
              <item>
               <widget class="QSpinBox" name="daysToStockSpinBox">
+               <property name="styleSheet">
+                <string notr="true">
+                 background-color: rgb(211, 211, 211);
+                 border: 2px solid rgb(0, 71, 255);
+                 border-radius: 5px;
+                 color: rgb(0, 71, 255);
+                 padding: 2px;
+                </string>
+               </property>
                <property name="minimum">
                 <number>1</number>
                </property>
@@ -592,8 +692,20 @@ color: rgb(23, 153, 0);</string>
            </item>
            <item>
             <widget class="QListView" name="howMuchToListView">
+             <property name="styleSheet">
+              <string notr="true">
+               color: rgb(0, 71, 255);
+               background-color: rgb(255, 255, 255);
+               font: 9pt &quot;Montserrat&quot;;
+               selection-background-color: rgb(230, 240, 255);
+               selection-color: rgb(0, 71, 255);
+              </string>
+             </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
              </property>
             </widget>
            </item>
