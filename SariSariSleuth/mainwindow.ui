@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -322,6 +322,26 @@ QPushButton:Pressed{
      <string>ANALYTICS</string>
     </property>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>751</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(179, 69, 69);
+border-radius: 20px</string>
+    </property>
+   </widget>
+   <zorder>widget</zorder>
+   <zorder>tabWidget</zorder>
+   <zorder>pushSales</zorder>
+   <zorder>pushTransactions</zorder>
+   <zorder>pushStock</zorder>
+   <zorder>pushAnalytics</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
