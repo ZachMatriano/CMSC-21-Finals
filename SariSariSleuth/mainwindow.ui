@@ -224,7 +224,7 @@ color: rgb(0, 71, 255)</string>
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="salesTab">
         <widget class="QWidget" name="bucket" native="true">
@@ -236,7 +236,7 @@ color: rgb(0, 71, 255)</string>
            <height>411</height>
           </rect>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>150</x>
@@ -246,38 +246,6 @@ color: rgb(0, 71, 255)</string>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QPushButton" name="openCameraButton">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255,255,255);
-border-radius: 15px;
-font: 700 9pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255);</string>
-             </property>
-             <property name="text">
-              <string>Open Camera</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_8">
-             <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>50</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
            <item>
             <widget class="QPushButton" name="manualAddButton">
              <property name="minimumSize">
@@ -427,7 +395,7 @@ color: rgb(23, 153, 0);</string>
            <height>181</height>
           </rect>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -475,13 +443,13 @@ color: rgb(23, 153, 0);</string>
            <bool>true</bool>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>152</y>
             <width>651</width>
-            <height>21</height>
+            <height>22</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -644,7 +612,7 @@ color: rgb(23, 153, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

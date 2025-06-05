@@ -182,10 +182,15 @@ void MainWindow::onFilterTextChanged(const QString &text) {
 }
 
 // TAB 1
-void MainWindow::onManualAddClicked()
-{
-    // TODO: Implement manual add functionality
-    QMessageBox::information(this, "Manual Add", "Manual add functionality will be implemented in the next phase.");
+void MainWindow::onManualAddClicked() {
+    ItemSelectionDialog dialog(stockModel, this);
+    if (dialog.exec() == QDialog::Accepted) {
+        StockItem selectedItem = dialog.getSelectedItem();
+        int quantity = dialog.getQuantity();
+
+        //Add transactions
+        transactionModel->addTransaction(selectedItem, quantity);
+    }
 }
 
 // TAB 2
