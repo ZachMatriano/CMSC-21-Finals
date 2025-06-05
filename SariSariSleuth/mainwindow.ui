@@ -218,6 +218,14 @@
 	background-color:rgb(244, 98, 98);
 	font: 700 20pt &quot;Arial&quot;;
 	border-radius: 30px;
+}
+
+QPushButton:Hover{
+	background-color:rgb(179, 69, 69);
+}
+
+QPushButton:Pressed{
+	background-color:rgb(179, 69, 69);
 }</string>
     </property>
     <property name="text">
@@ -240,6 +248,14 @@
 	background-color:rgb(244, 98, 98);
 	font: 700 17pt &quot;Arial&quot;;
 	border-radius: 30px;
+}
+
+QPushButton:Hover{
+	background-color:rgb(179, 69, 69);
+}
+
+QPushButton:pressed{
+	background-color:rgb(179, 69, 69);
 }</string>
     </property>
     <property name="text">
@@ -262,6 +278,14 @@
 	background-color:rgb(244, 98, 98);
 	font: 700 20pt &quot;Arial&quot;;
 	border-radius: 30px;
+}
+
+QPushButton:Hover{
+	background-color:rgb(179, 69, 69);
+}
+
+QPushButton:Pressed{
+	background-color:rgb(179, 69, 69);
 }</string>
     </property>
     <property name="text">
@@ -284,6 +308,14 @@
 	background-color:rgb(244, 98, 98);
 	font: 700 20pt &quot;Arial&quot;;
 	border-radius: 30px;
+}
+
+QPushButton:Hover{
+	background-color:rgb(179, 69, 69);
+}
+
+QPushButton:Pressed{
+	background-color:rgb(179, 69, 69);
 }</string>
     </property>
     <property name="text">
