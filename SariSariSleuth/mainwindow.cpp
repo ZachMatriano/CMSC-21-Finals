@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "customshape.h"
 #include "./ui_mainwindow.h"
 #include "itemselectiondialog.h"
 #include <QMessageBox>
@@ -16,10 +15,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     
     QVector<QPair<QPushButton*, QWidget*>> tabMappings = {
-        {ui->sales_btn, ui->sales},
-        {ui->transt_btn, ui->transactions},
-        {ui->logging_btn, ui->stocklogging},
-        {ui->misctab, ui->tab4}
+        {ui->salesButton, ui->sales},
+        {ui->transactionsButton, ui->transactions},
+        {ui->loggingButton, ui->stocklogging},
+        {ui->analysisButton, ui->tab4}
     };
 
     for (const auto& pair : tabMappings) {
@@ -50,10 +49,32 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->confirmButton, &QPushButton::clicked, this, &MainWindow::onConfirmTransactionClicked);
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
 
-    // === SHAPES ===
-    if (CustomShape* container_buttons = qobject_cast<CustomShape*>(ui->container_buttons)) {
-        ShapeStyle style = { ShapeType::RoundedRect, QColor(255,255,255), 10 };   // ShapeStyle style = {Shape(circle or rect), color, roundness}
-        container_buttons->setShapeStyle(style);
+    // === SHAPES AND ICON STYLES ===
+    struct ButtonStyle {
+        QPushButton* button;
+        QString iconPath;
+    };
+
+    QList<ButtonStyle> styledButtons = {
+        {ui->salesButton, ":/resources/clear-sales.png"},
+        {ui->transactionsButton, ":/resources/clear-transactions.png"},
+        {ui->loggingButton, ":/resources/clear-logging.png"},
+        {ui->analysisButton, ":/resources/clear-analysis.png"}
+    };
+
+    for (const auto& item : styledButtons) {
+        item.button->setStyleSheet(QString(R"(
+        QPushButton {
+            background-color: transparent;
+            border: none;
+            qproperty-icon: url(%1);
+            qproperty-iconSize: 50px 50px;
+        }
+        QPushButton:hover {
+            background-color: rgba(255, 255, 255, 30);
+            border-radius: 10px;
+        }
+        )").arg(item.iconPath));
     }
 }
 

@@ -49,9 +49,9 @@ border-radius: 15px;</string>
        <widget class="QWidget" name="horizontalLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>110</x>
+          <x>90</x>
           <y>10</y>
-          <width>561</width>
+          <width>591</width>
           <height>71</height>
          </rect>
         </property>
@@ -70,18 +70,19 @@ border-radius: 15px;</string>
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="sales_btn">
+          <widget class="QPushButton" name="salesButton">
            <property name="enabled">
             <bool>true</bool>
            </property>
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb();</string>
+            <string notr="true">font: 700 9pt &quot;Montserrat&quot;;
+color: rgb(0, 71, 255);</string>
            </property>
            <property name="text">
             <string>Sales</string>
@@ -102,15 +103,16 @@ border-radius: 15px;</string>
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="transt_btn">
+          <widget class="QPushButton" name="transactionsButton">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb();</string>
+            <string notr="true">font: 700 9pt &quot;Montserrat&quot;;
+color: rgb(0, 71, 255);</string>
            </property>
            <property name="text">
             <string>Transactions</string>
@@ -131,18 +133,19 @@ border-radius: 15px;</string>
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="logging_btn">
+          <widget class="QPushButton" name="loggingButton">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb();</string>
+            <string notr="true">font: 700 9pt &quot;Montserrat&quot;;
+color: rgb(0, 71, 255);</string>
            </property>
            <property name="text">
-            <string>Stck lging</string>
+            <string>Stock logging</string>
            </property>
           </widget>
          </item>
@@ -160,18 +163,19 @@ border-radius: 15px;</string>
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="misctab">
+          <widget class="QPushButton" name="analysisButton">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb();</string>
+            <string notr="true">font: 700 9pt &quot;Montserrat&quot;;
+color: rgb(0, 71, 255);</string>
            </property>
            <property name="text">
-            <string>Tab 4</string>
+            <string>Analysis</string>
            </property>
           </widget>
          </item>

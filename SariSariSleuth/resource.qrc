@@ -2,5 +2,9 @@
     <qresource prefix="/resources">
         <file>main-bg.png</file>
         <file>sold.png</file>
+        <file>clear-analysis.png</file>
+        <file>clear-logging.png</file>
+        <file>clear-sales.png</file>
+        <file>clear-transactions.png</file>
     </qresource>
 </RCC>
