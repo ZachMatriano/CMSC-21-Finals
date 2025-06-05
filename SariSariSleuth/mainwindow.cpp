@@ -13,7 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     , confirmedTransactionModel(new ConfirmedTransactionModel(this))
 {
     ui->setupUi(this);
-    
+    ui->tabWidget->tabBar()->hide(); //Hides tabs to make it cooler
+
     // Set up the table view for stock
     ui->stockTableView->setModel(stockModel);
     ui->stockTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -35,6 +36,20 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect signals and slots for transaction management
     connect(ui->confirmButton, &QPushButton::clicked, this, &MainWindow::onConfirmTransactionClicked);
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
+
+    // BUTTONS TO OPEN TABWIDGET
+    connect(ui->pushSales, &QPushButton::clicked, this, [=]() {
+        ui->tabWidget->setCurrentIndex(0);
+    });
+    connect(ui->pushStock, &QPushButton::clicked, this, [=]() {
+        ui->tabWidget->setCurrentIndex(1);
+    });
+    connect(ui->pushTransactions, &QPushButton::clicked, this, [=]() {
+        ui->tabWidget->setCurrentIndex(2);
+    });
+    connect(ui->pushAnalytics, &QPushButton::clicked, this, [=]() {
+        ui->tabWidget->setCurrentIndex(3);
+    });
 }
 
 MainWindow::~MainWindow()
