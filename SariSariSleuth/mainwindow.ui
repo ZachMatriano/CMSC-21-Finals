@@ -28,19 +28,6 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="openCameraButton">
-            <property name="minimumSize">
-             <size>
-              <width>150</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Open Camera</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="manualAddButton">
             <property name="minimumSize">
              <size>

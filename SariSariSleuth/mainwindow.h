@@ -26,7 +26,6 @@ class MainWindow : public QMainWindow {
         void onEditButtonClicked();
         void onDeleteButtonClicked();
         void onFilterTextChanged(const QString &text);
-        void onOpenCameraClicked();
         void onManualAddClicked();
         void onConfirmTransactionClicked();
         void onDeleteTransactionClicked();
