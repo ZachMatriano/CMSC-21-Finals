@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         confirmedtransactionmodel.h
         analyticsmodel.cpp
         analyticsmodel.h
+        howmuchmodel.cpp
+        howmuchmodel.h
         ${TS_FILES}
 )
 

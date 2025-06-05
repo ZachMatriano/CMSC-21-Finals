@@ -6,6 +6,7 @@ AnalyticsModel::AnalyticsModel(QObject *parent)
     : QAbstractListModel(parent)
     , currentPeriod(TimePeriod::LastWeek)
 {
+    // Initial data load will be triggered by MainWindow after all models are initialized
 }
 
 int AnalyticsModel::rowCount(const QModelIndex &parent) const
@@ -22,10 +23,10 @@ QVariant AnalyticsModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         const ProductAnalytics &analytics = analyticsData[index.row()];
-        return QString("%1 - Sold: %2 (Rate: %.2f/day)")
+        return QString("%1 - Sold: %2 (Rate: %3/day)")
             .arg(analytics.productName)
             .arg(analytics.totalSold)
-            .arg(analytics.salesRate);
+            .arg(QString::number(analytics.salesRate, 'f', 2));
     }
     return QVariant();
 }

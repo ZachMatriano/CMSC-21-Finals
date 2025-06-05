@@ -241,6 +241,46 @@
           </layout>
          </widget>
         </item>
+        <item>
+         <widget class="QGroupBox" name="howMuchToStockGroup">
+          <property name="title">
+           <string>How Much to Stock</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Days to Stock For (n):</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="daysToStockSpinBox">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>365</number>
+               </property>
+               <property name="value">
+                <number>7</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QListView" name="howMuchToListView">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>

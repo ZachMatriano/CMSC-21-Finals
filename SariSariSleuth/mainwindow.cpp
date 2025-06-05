@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , transactionModel(new TransactionModel(this))
     , confirmedTransactionModel(new ConfirmedTransactionModel(this))
     , analyticsModel(new AnalyticsModel(this))
+    , howMuchModel(new HowMuchModel(this))
 {
     ui->setupUi(this);
     
@@ -24,8 +25,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->transactionTableView->setModel(transactionModel);
     ui->transactionTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    // Set up the analytics list view
+    // Set up the analytics list views
     ui->productsToListView->setModel(analyticsModel);
+    ui->howMuchToListView->setModel(howMuchModel);
     
     // Connect signals and slots for stock management
     connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
@@ -44,6 +46,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect signals and slots for analytics
     connect(ui->timePeriodComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onTimePeriodChanged);
+    connect(ui->daysToStockSpinBox, QOverload<int>::of(&QSpinBox::valueChanged),
+            this, &MainWindow::onDaysToStockChanged);
+
+    // Initialize analytics with current data
+    onTimePeriodChanged(0); // This will load data for LastWeek period
 }
 
 // DESTRUCTOR
@@ -195,6 +202,10 @@ void MainWindow::onConfirmTransactionClicked()
 
     // Remove from pending transactions
     transactionModel->removeTransaction(currentIndex.row());
+
+    // Update analytics with current time period
+    int currentPeriodIndex = ui->timePeriodComboBox->currentIndex();
+    onTimePeriodChanged(currentPeriodIndex);
 }
 
 void MainWindow::onDeleteTransactionClicked()
@@ -229,4 +240,49 @@ void MainWindow::onTimePeriodChanged(int index)
     }
     
     analyticsModel->updateAnalytics(transactions, period);
+    
+    // Update the how much to stock list
+    QVector<ProductAnalytics> analytics;
+    for (int i = 0; i < analyticsModel->rowCount(); ++i) {
+        QModelIndex idx = analyticsModel->index(i);
+        QString text = analyticsModel->data(idx).toString();
+        QStringList parts = text.split(" - Sold: ");
+        QString name = parts[0];
+        QStringList soldParts = parts[1].split(" (Rate: ");
+        int sold = soldParts[0].toInt();
+        QString rateStr = soldParts[1].split("/day")[0];
+        double rate = rateStr.toDouble();
+        
+        ProductAnalytics analytic;
+        analytic.productName = name;
+        analytic.totalSold = sold;
+        analytic.salesRate = rate;
+        analytics.append(analytic);
+    }
+    
+    howMuchModel->updateRecommendations(analytics, ui->daysToStockSpinBox->value(), stockModel);
+}
+
+void MainWindow::onDaysToStockChanged(int days)
+{
+    // Get current analytics data
+    QVector<ProductAnalytics> analytics;
+    for (int i = 0; i < analyticsModel->rowCount(); ++i) {
+        QModelIndex idx = analyticsModel->index(i);
+        QString text = analyticsModel->data(idx).toString();
+        QStringList parts = text.split(" - Sold: ");
+        QString name = parts[0];
+        QStringList soldParts = parts[1].split(" (Rate: ");
+        int sold = soldParts[0].toInt();
+        QString rateStr = soldParts[1].split("/day")[0];
+        double rate = rateStr.toDouble();
+        
+        ProductAnalytics analytic;
+        analytic.productName = name;
+        analytic.totalSold = sold;
+        analytic.salesRate = rate;
+        analytics.append(analytic);
+    }
+    
+    howMuchModel->updateRecommendations(analytics, days, stockModel);
 }
