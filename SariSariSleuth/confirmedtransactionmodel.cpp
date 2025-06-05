@@ -1,28 +1,27 @@
 #include "confirmedtransactionmodel.h"
 #include <QDebug>
 
+// CONSTRUCTOR
 ConfirmedTransactionModel::ConfirmedTransactionModel(QObject *parent)
     : QAbstractTableModel(parent)
     , nextTransactionId(1)
 {
 }
 
-int ConfirmedTransactionModel::rowCount(const QModelIndex &parent) const
-{
+// NECESSARY OVERRIDES, see stockmodel.cpp and stockmodel.h for more complete documentation
+int ConfirmedTransactionModel::rowCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     return transactions.size();
 }
 
-int ConfirmedTransactionModel::columnCount(const QModelIndex &parent) const
-{
+int ConfirmedTransactionModel::columnCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     return 5; // Transaction ID, Product Name, Price, Quantity, Timestamp
 }
 
-QVariant ConfirmedTransactionModel::data(const QModelIndex &index, int role) const
-{
+QVariant ConfirmedTransactionModel::data(const QModelIndex &index, int role) const {
     if (!index.isValid() || index.row() >= transactions.size() || index.column() >= 5)
         return QVariant();
 
@@ -40,8 +39,7 @@ QVariant ConfirmedTransactionModel::data(const QModelIndex &index, int role) con
     return QVariant();
 }
 
-QVariant ConfirmedTransactionModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
+QVariant ConfirmedTransactionModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role != Qt::DisplayRole)
         return QVariant();
 
@@ -58,8 +56,8 @@ QVariant ConfirmedTransactionModel::headerData(int section, Qt::Orientation orie
     return QVariant();
 }
 
-void ConfirmedTransactionModel::addTransaction(const StockItem &item, int quantity)
-{
+// ACTUAL IMPLEMENTED FUNCTIONS
+void ConfirmedTransactionModel::addTransaction(const StockItem &item, int quantity) {
     beginInsertRows(QModelIndex(), transactions.size(), transactions.size());
     
     ConfirmedTransaction transaction;
@@ -72,15 +70,13 @@ void ConfirmedTransactionModel::addTransaction(const StockItem &item, int quanti
     endInsertRows();
 }
 
-ConfirmedTransaction ConfirmedTransactionModel::getTransaction(int row) const
-{
+ConfirmedTransaction ConfirmedTransactionModel::getTransaction(int row) const {
     if (row >= 0 && row < transactions.size())
         return transactions[row];
     return ConfirmedTransaction();
 }
 
-void ConfirmedTransactionModel::clearTransactions()
-{
+void ConfirmedTransactionModel::clearTransactions() {
     beginResetModel();
     transactions.clear();
     nextTransactionId = 1;

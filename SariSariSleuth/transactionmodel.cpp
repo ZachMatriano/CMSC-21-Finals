@@ -1,28 +1,24 @@
 #include "transactionmodel.h"
 #include <QDebug>
 
-TransactionModel::TransactionModel(QObject *parent)
-    : QAbstractTableModel(parent)
-    , nextTransactionId(1)
-{
+// CONSTRUCTOR
+TransactionModel::TransactionModel(QObject *parent) : QAbstractTableModel(parent), nextTransactionId(1) {
 }
 
-int TransactionModel::rowCount(const QModelIndex &parent) const
-{
+//NECESSARY OVERRIDES, better explanations exist in the stockmodel.h file since that was created first
+int TransactionModel::rowCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     return transactions.size();
 }
 
-int TransactionModel::columnCount(const QModelIndex &parent) const
-{
+int TransactionModel::columnCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     return 5; // Transaction ID, Product Name, Price, Quantity, Timestamp
 }
 
-QVariant TransactionModel::data(const QModelIndex &index, int role) const
-{
+QVariant TransactionModel::data(const QModelIndex &index, int role) const {
     if (!index.isValid() || index.row() >= transactions.size() || index.column() >= 5)
         return QVariant();
 
@@ -40,8 +36,7 @@ QVariant TransactionModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant TransactionModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
+QVariant TransactionModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (role != Qt::DisplayRole)
         return QVariant();
 
@@ -58,8 +53,11 @@ QVariant TransactionModel::headerData(int section, Qt::Orientation orientation, 
     return QVariant();
 }
 
-void TransactionModel::addTransaction(const StockItem &item, int quantity)
-{
+
+// ACTUAL IMPLEMENTED FUNCTIONS
+void TransactionModel::addTransaction(const StockItem &item, int quantity) {
+
+    // Called by onManualAddClicked and onConfirmTransactionClicked
     beginInsertRows(QModelIndex(), transactions.size(), transactions.size());
     
     Transaction transaction;
@@ -72,15 +70,16 @@ void TransactionModel::addTransaction(const StockItem &item, int quantity)
     endInsertRows();
 }
 
-Transaction TransactionModel::getTransaction(int row) const
-{
+Transaction TransactionModel::getTransaction(int row) const {
     if (row >= 0 && row < transactions.size())
         return transactions[row];
     return Transaction();
 }
 
-void TransactionModel::removeTransaction(int row)
-{
+void TransactionModel::removeTransaction(int row) {
+
+    // Called by onConfirmTransactionClicked and onDeleteTransactionClicked
+
     if (row >= 0 && row < transactions.size()) {
         beginRemoveRows(QModelIndex(), row, row);
         transactions.removeAt(row);
@@ -88,10 +87,9 @@ void TransactionModel::removeTransaction(int row)
     }
 }
 
-void TransactionModel::clearTransactions()
-{
+void TransactionModel::clearTransactions() { // TODO: WHERE????
     beginResetModel();
     transactions.clear();
     nextTransactionId = 1;
     endResetModel();
-} 
+}

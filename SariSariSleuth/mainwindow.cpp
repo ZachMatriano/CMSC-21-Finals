@@ -5,6 +5,7 @@
 #include <QInputDialog>
 #include <algorithm>
 
+// CONSTRUCTOR
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -37,8 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
 }
 
-MainWindow::~MainWindow()
-{
+// DESTRUCTOR
+MainWindow::~MainWindow() {
     delete ui;
 }
 
@@ -57,7 +58,7 @@ void MainWindow::onAddButtonClicked() {
         return;
 
     StockItem item;
-    std::vector<int> ids;
+    std::vector<int> ids; // Unique ID but also slot filling
     for (int i = 0; i < this->stockModel->rowCount(); i++) {
         ids.push_back(this->stockModel->getItem(i).id);
     }
@@ -130,8 +131,7 @@ void MainWindow::onOpenCameraClicked()
     QMessageBox::information(this, "Camera", "Camera functionality will be implemented in the next phase.");
 }
 
-void MainWindow::onManualAddClicked()
-{
+void MainWindow::onManualAddClicked() {
     ItemSelectionDialog dialog(stockModel, this);
     if (dialog.exec() == QDialog::Accepted) {
         StockItem selectedItem = dialog.getSelectedItem();
@@ -151,20 +151,34 @@ void MainWindow::onConfirmTransactionClicked()
     }
 
     Transaction transaction = transactionModel->getTransaction(currentIndex.row());
-    
-    // Add to confirmed transactions
-    confirmedTransactionModel->addTransaction(transaction.item, transaction.quantity);
 
     // Update stock
-    StockItem item = transaction.item;
-    item.remaining -= transaction.quantity;
-    item.sold += transaction.quantity;
-    
-    // Find the item in the stock model and update it
+    StockItem item;
     for (int i = 0; i < stockModel->rowCount(); i++) {
-        if (stockModel->getItem(i).id == item.id) {
-            stockModel->updateItem(i, item);
-            break;
+        if (transaction.item.id == stockModel->getItem(i).id) {
+            item = stockModel->getItem(i);
+            if (item.remaining < transaction.quantity) {
+                QMessageBox::StandardButton reply = QMessageBox::warning(this, "Low Stock Warning",
+                    QString("This transaction would reduce stock below zero.\n"
+                        "Current remaining stock: %1\n"
+                        "Transaction quantity: %2\n\n"
+                        "Would you like to continue? The remaining stock will be set to 0.").arg(item.remaining).arg(transaction.quantity),
+                QMessageBox::Yes | QMessageBox::No);
+                if (reply == QMessageBox::No) {
+                    break;
+                }
+                item.sold += item.remaining;
+                confirmedTransactionModel->addTransaction(transaction.item, item.remaining);
+                item.remaining = 0;
+                stockModel->updateItem(i, item);
+                break;
+            } else {
+                item.remaining -= transaction.quantity;
+                item.sold += transaction.quantity;
+                confirmedTransactionModel->addTransaction(transaction.item, transaction.quantity);
+                stockModel->updateItem(i, item);
+                break;
+            }
         }
     }
 

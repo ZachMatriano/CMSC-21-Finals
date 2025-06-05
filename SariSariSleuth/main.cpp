@@ -4,11 +4,10 @@
 #include <QLocale>
 #include <QTranslator>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv); // Our main application
     
-    QTranslator translator;
+    QTranslator translator; // Translation services
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
         const QString baseName = "SariSariSleuth_" + QLocale(locale).name();
@@ -18,7 +17,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    MainWindow w;
+    MainWindow w; // Our main window
     w.show();
     return a.exec();
 }

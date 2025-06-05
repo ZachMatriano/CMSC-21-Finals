@@ -8,33 +8,32 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    public:
+        MainWindow(QWidget *parent = nullptr);
+        ~MainWindow();
 
-private slots:
-    void onAddButtonClicked();
-    void onEditButtonClicked();
-    void onDeleteButtonClicked();
-    void onFilterTextChanged(const QString &text);
-    void onOpenCameraClicked();
-    void onManualAddClicked();
-    void onConfirmTransactionClicked();
-    void onDeleteTransactionClicked();
+    private slots:
+        void onAddButtonClicked();
+        void onEditButtonClicked();
+        void onDeleteButtonClicked();
+        void onFilterTextChanged(const QString &text);
+        void onOpenCameraClicked();
+        void onManualAddClicked();
+        void onConfirmTransactionClicked();
+        void onDeleteTransactionClicked();
 
-private:
-    Ui::MainWindow *ui;
-    StockModel *stockModel;
-    TransactionModel *transactionModel;
-    ConfirmedTransactionModel *confirmedTransactionModel;
+    private:
+        Ui::MainWindow *ui;
+        StockModel *stockModel;
+        TransactionModel *transactionModel;
+        ConfirmedTransactionModel *confirmedTransactionModel;
 };
 
-#endif // MAINWINDOW_H
+#endif
