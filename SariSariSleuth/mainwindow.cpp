@@ -49,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->filterLineEdit, &QLineEdit::textChanged, this, &MainWindow::onFilterTextChanged);
 
     // Connect signals and slots for first tab
-    connect(ui->openCameraButton, &QPushButton::clicked, this, &MainWindow::onOpenCameraClicked);
     connect(ui->manualAddButton, &QPushButton::clicked, this, &MainWindow::onManualAddClicked);
 
     // Connect signals and slots for transaction management
@@ -183,21 +182,10 @@ void MainWindow::onFilterTextChanged(const QString &text) {
 }
 
 // TAB 1
-void MainWindow::onOpenCameraClicked()
+void MainWindow::onManualAddClicked()
 {
-    // TODO: Implement camera functionality
-    QMessageBox::information(this, "Camera", "Camera functionality will be implemented in the next phase.");
-}
-
-void MainWindow::onManualAddClicked() {
-    ItemSelectionDialog dialog(stockModel, this);
-    if (dialog.exec() == QDialog::Accepted) {
-        StockItem selectedItem = dialog.getSelectedItem();
-        int quantity = dialog.getQuantity();
-
-        // Add transaction
-        transactionModel->addTransaction(selectedItem, quantity);
-    }
+    // TODO: Implement manual add functionality
+    QMessageBox::information(this, "Manual Add", "Manual add functionality will be implemented in the next phase.");
 }
 
 // TAB 2
