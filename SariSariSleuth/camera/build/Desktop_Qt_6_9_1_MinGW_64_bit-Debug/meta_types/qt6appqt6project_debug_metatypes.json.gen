@@ -1,0 +1,161 @@
+[
+    {
+        "classes": [
+            {
+                "className": "FrameProcessor",
+                "lineNumber": 11,
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "videoSink",
+                        "notify": "videoSinkChanged",
+                        "read": "videoSink",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QVideoSink*",
+                        "user": false,
+                        "write": "setVideoSink"
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "displayString",
+                        "notify": "displayStringChanged",
+                        "read": "displayString",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "FrameProcessor",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "videoSinkChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "displayStringChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "result",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "barcodeDetected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "image",
+                                "type": "QImage"
+                            }
+                        ],
+                        "index": 3,
+                        "name": "newFrameAvailable",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "frame",
+                                "type": "QVideoFrame"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "processFrame",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "out",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "onImageProcessed",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "FrameProcessor.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "ImageProcessor",
+                "lineNumber": 6,
+                "object": true,
+                "qualifiedClassName": "ImageProcessor",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "out",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "imageProcessed",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "image",
+                                "type": "QImage"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "processImage",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "ImageProcessor.h",
+        "outputRevision": 69
+    }
+]

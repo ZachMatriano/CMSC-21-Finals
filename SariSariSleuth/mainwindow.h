@@ -7,6 +7,7 @@
 #include "confirmedtransactionmodel.h"
 #include "analyticsmodel.h"
 #include "howmuchmodel.h"
+#include "QrCodeGenerator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,6 +33,7 @@ class MainWindow : public QMainWindow {
         void onDeleteTransactionClicked();
         void onTimePeriodChanged(int index);
         void onDaysToStockChanged(int days);
+        void updateQRCode();
 
     private:
         Ui::MainWindow *ui;
@@ -40,6 +42,7 @@ class MainWindow : public QMainWindow {
         ConfirmedTransactionModel *confirmedTransactionModel;
         AnalyticsModel *analyticsModel;
         HowMuchModel *howMuchModel;
+        QrCodeGenerator *qrCodeGenerator;
 };
 
 #endif

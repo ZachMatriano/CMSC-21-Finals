@@ -1,0 +1,5 @@
+module qt6project
+typeinfo appqt6project.qmltypes
+prefer :/qt/qml/qt6project/
+Main 1.0 Main.qml
+

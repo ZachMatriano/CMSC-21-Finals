@@ -1,0 +1,4 @@
+module qrcodescanner
+typeinfo qrcodescanner.qmltypes
+prefer :/qrcodescanner/
+

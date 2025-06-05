@@ -331,4 +331,15 @@ void StockModel::readDataFromFile() {
     }
 
     file.close();
+}
+
+QString StockModel::generateQRCodeString() const {
+    QString qrString;
+    for (const StockItem &item : items) {
+        qrString += QString("%1|%2|%3\n")
+            .arg(item.productName)
+            .arg(QString::number(item.price, 'f', 2))
+            .arg(item.remaining);
+    }
+    return qrString;
 } 

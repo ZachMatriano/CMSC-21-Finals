@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/qt/qml/qt6project">C:/Users/Zachary/Downloads/Qt-QML-QR-code-scanner-qt6/Qt-QML-QR-code-scanner-qt6/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/qt6project</file>
+
+  </qresource>
+</RCC>

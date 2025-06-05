@@ -55,6 +55,9 @@ class StockModel : public QAbstractTableModel {
         void updateItem(int row, const StockItem &item);
         StockItem getItem(int row) const;
         void filterItems(const QString &text);
+        
+        // QR code generation
+        QString generateQRCodeString() const;
 };
 
 #endif
