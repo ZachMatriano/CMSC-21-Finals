@@ -26,6 +26,12 @@ class TransactionModel : public QAbstractTableModel {
     private:
         QVector<Transaction> transactions; //Our list of transactions
         int nextTransactionId; //TODO: what??
+        const QString DATA_FILE = "Data/pending_transactions.txt";
+
+        // Helper functions for file operations
+        void writeTransactionToFile(const Transaction &transaction);
+        void deleteTransactionFromFile(int id);
+        void readDataFromFile();
 
     public:
         explicit TransactionModel(QObject *parent = nullptr); //Constructor

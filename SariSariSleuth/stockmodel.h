@@ -3,6 +3,8 @@
 
 #include <QAbstractTableModel>
 #include <QVector>
+#include <QString>
+#include <fstream>
 
 struct StockItem { // Our Stock Item structure
     int id; // Used to display on the StockModel
@@ -28,6 +30,13 @@ class StockModel : public QAbstractTableModel {
         QVector<StockItem> items; // The whole stock
         QVector<StockItem> filteredItems; // The filtered stock, our actual working copy of the items
         QString currentFilter; // The filter
+        const QString DATA_FILE = "Data/stock_data.txt";
+
+        // Helper functions for file operations
+        void writeItemToFile(const StockItem &item);
+        void updateItemInFile(const StockItem &oldItem, const StockItem &newItem);
+        void deleteItemFromFile(int id);
+        void readDataFromFile(); // New method to read initial data
 
     public:
         explicit StockModel(QObject *parent = nullptr); // Constructor

@@ -192,8 +192,56 @@
       </widget>
       <widget class="QWidget" name="tab4">
        <attribute name="title">
-        <string>Tab 4</string>
+        <string>Analytics</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QGroupBox" name="productsToStockGroup">
+          <property name="title">
+           <string>Products to Stock</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Time Period:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="timePeriodComboBox">
+               <item>
+                <property name="text">
+                 <string>Last Week</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Last Month</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Last Year</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QListView" name="productsToListView">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

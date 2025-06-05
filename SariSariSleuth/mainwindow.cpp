@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , stockModel(new StockModel(this))
     , transactionModel(new TransactionModel(this))
     , confirmedTransactionModel(new ConfirmedTransactionModel(this))
+    , analyticsModel(new AnalyticsModel(this))
 {
     ui->setupUi(this);
     
@@ -22,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Set up the table view for transactions
     ui->transactionTableView->setModel(transactionModel);
     ui->transactionTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Set up the analytics list view
+    ui->productsToListView->setModel(analyticsModel);
     
     // Connect signals and slots for stock management
     connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
@@ -36,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     // Connect signals and slots for transaction management
     connect(ui->confirmButton, &QPushButton::clicked, this, &MainWindow::onConfirmTransactionClicked);
     connect(ui->deleteTransactionButton, &QPushButton::clicked, this, &MainWindow::onDeleteTransactionClicked);
+
+    // Connect signals and slots for analytics
+    connect(ui->timePeriodComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &MainWindow::onTimePeriodChanged);
 }
 
 // DESTRUCTOR
@@ -43,6 +51,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
+// TAB 3
 void MainWindow::onAddButtonClicked() {
     bool ok;
     QString productName = QInputDialog::getText(this, "Add Product", "Product Name:", QLineEdit::Normal, "", &ok);
@@ -125,6 +134,7 @@ void MainWindow::onFilterTextChanged(const QString &text) {
     stockModel->filterItems(text);
 }
 
+// TAB 1
 void MainWindow::onOpenCameraClicked()
 {
     // TODO: Implement camera functionality
@@ -142,6 +152,7 @@ void MainWindow::onManualAddClicked() {
     }
 }
 
+// TAB 2
 void MainWindow::onConfirmTransactionClicked()
 {
     QModelIndex currentIndex = ui->transactionTableView->currentIndex();
@@ -198,4 +209,24 @@ void MainWindow::onDeleteTransactionClicked()
     if (reply == QMessageBox::Yes) {
         transactionModel->removeTransaction(currentIndex.row());
     }
+}
+
+// TAB 4
+void MainWindow::onTimePeriodChanged(int index)
+{
+    TimePeriod period;
+    switch (index) {
+        case 0: period = TimePeriod::LastWeek; break;
+        case 1: period = TimePeriod::LastMonth; break;
+        case 2: period = TimePeriod::LastYear; break;
+        default: period = TimePeriod::LastWeek;
+    }
+    
+    // Get all transactions from confirmedTransactionModel
+    QVector<ConfirmedTransaction> transactions;
+    for (int i = 0; i < confirmedTransactionModel->rowCount(); ++i) {
+        transactions.append(confirmedTransactionModel->getTransaction(i));
+    }
+    
+    analyticsModel->updateAnalytics(transactions, period);
 }

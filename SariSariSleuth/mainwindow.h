@@ -5,6 +5,7 @@
 #include "stockmodel.h"
 #include "transactionmodel.h"
 #include "confirmedtransactionmodel.h"
+#include "analyticsmodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,12 +29,14 @@ class MainWindow : public QMainWindow {
         void onManualAddClicked();
         void onConfirmTransactionClicked();
         void onDeleteTransactionClicked();
+        void onTimePeriodChanged(int index);
 
     private:
         Ui::MainWindow *ui;
         StockModel *stockModel;
         TransactionModel *transactionModel;
         ConfirmedTransactionModel *confirmedTransactionModel;
+        AnalyticsModel *analyticsModel;
 };
 
 #endif

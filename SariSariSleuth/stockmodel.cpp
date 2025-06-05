@@ -1,8 +1,13 @@
 #include "stockmodel.h"
 #include <QDebug>
+#include <QDir>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 // CONSTRUCTOR
 StockModel::StockModel(QObject *parent) : QAbstractTableModel(parent) {
+    readDataFromFile();
 }
 
 // NECESSARY OVERRIDES
@@ -123,6 +128,87 @@ Qt::ItemFlags StockModel::flags(const QModelIndex &index) const {
 }
 
 // ACTUAL IMPLEMENTED METHODS
+void StockModel::writeItemToFile(const StockItem &item) {
+    // Create Data directory if it doesn't exist
+    QDir().mkpath("Data");
+    
+    std::ofstream file(DATA_FILE.toStdString(), std::ios::app);
+    if (file.is_open()) {
+        std::cout << "what the heck." << std::endl;
+        file << item.id << "|" << item.productName.toStdString() << "|" << item.price << "|" << item.stock << "|" << item.remaining << "|" << item.sold << std::endl;
+        file.close();
+    }
+}
+
+void StockModel::updateItemInFile(const StockItem &oldItem, const StockItem &newItem) {
+    std::ifstream inFile(DATA_FILE.toStdString());
+    std::ofstream outFile("Data/temp.txt");
+    std::string line;
+    
+    if (inFile.is_open() && outFile.is_open()) {
+        while (std::getline(inFile, line)) {
+            std::istringstream iss(line);
+            std::string idStr;
+            std::getline(iss, idStr, '|');
+            int id = std::stoi(idStr);
+            
+            if (id == oldItem.id) {
+                // Write the new item data
+                outFile << newItem.id << "|"
+                       << newItem.productName.toStdString() << "|"
+                       << newItem.price << "|"
+                       << newItem.stock << "|"
+                       << newItem.remaining << "|"
+                       << newItem.sold << std::endl;
+            } else {
+                // Write the original line
+                outFile << line << std::endl;
+            }
+        }
+        
+        inFile.close();
+        outFile.close();
+        
+        // Replace the original file with the temporary file
+        std::remove(DATA_FILE.toStdString().c_str());
+        std::rename("Data/temp.txt", DATA_FILE.toStdString().c_str());
+    }
+}
+
+void StockModel::deleteItemFromFile(int id) {
+    std::ifstream inFile(DATA_FILE.toStdString());
+    std::ofstream outFile("Data/temp.txt");
+    std::string line;
+    bool found = false;
+    
+    if (inFile.is_open() && outFile.is_open()) {
+        while (std::getline(inFile, line)) {
+            std::istringstream iss(line);
+            std::string idStr;
+            std::getline(iss, idStr, '|');
+            int currentId = std::stoi(idStr);
+            
+            if (currentId != id) {
+                outFile << line << std::endl;
+            } else {
+                found = true;
+            }
+        }
+        
+        inFile.close();
+        outFile.close();
+        
+        if (found) {
+            // Replace the original file with the temporary file
+            std::remove(DATA_FILE.toStdString().c_str());
+            std::rename("Data/temp.txt", DATA_FILE.toStdString().c_str());
+        } else {
+            // If item wasn't found, remove the temporary file
+            std::remove("Data/temp.txt");
+        }
+    }
+}
+
 void StockModel::addItem(const StockItem &item) {
 
     // Only called by onAddButtonClicked
@@ -132,6 +218,7 @@ void StockModel::addItem(const StockItem &item) {
     if (currentFilter.isEmpty() || item.productName.contains(currentFilter, Qt::CaseInsensitive)) {
         filteredItems.append(item);
     }
+    writeItemToFile(item);
     endInsertRows(); // Must be called at the end of insertion
 }
 
@@ -146,6 +233,7 @@ void StockModel::removeItem(int row) {
     StockItem item = filteredItems[row];
     filteredItems.removeAt(row);
     items.removeOne(item);
+    deleteItemFromFile(item.id);
     endRemoveRows(); // Must be called at the end of removal
 }
 
@@ -157,6 +245,7 @@ void StockModel::updateItem(int row, const StockItem &item) {
     if (row < 0 || row >= filteredItems.size()) // Guard
         return;
 
+    StockItem oldItem = filteredItems[row];
     filteredItems[row] = item;
     
     // Find the item in the main list
@@ -167,7 +256,8 @@ void StockModel::updateItem(int row, const StockItem &item) {
         }
     }
     
-    emit dataChanged(index(row, 0), index(row, columnCount() - 1)); //TODO: Is this even used????
+    updateItemInFile(oldItem, item);
+    emit dataChanged(index(row, 0), index(row, columnCount() - 1)); // TODO: IS THIS EVEN USED??
 }
 
 StockItem StockModel::getItem(int row) const {
@@ -194,4 +284,51 @@ void StockModel::filterItems(const QString &text) {
         }
     }
     endResetModel(); // Ends the reset of any data
+}
+
+void StockModel::readDataFromFile() {
+    // Create Data directory if it doesn't exist
+    QDir().mkpath("Data");
+    
+    std::ifstream file(DATA_FILE.toStdString());
+    if (!file.is_open()) {
+        return; // File doesn't exist yet, that's okay
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string token;
+        StockItem item;
+
+        // Read ID
+        std::getline(iss, token, '|');
+        item.id = std::stoi(token);
+
+        // Read Product Name
+        std::getline(iss, token, '|');
+        item.productName = QString::fromStdString(token);
+
+        // Read Price
+        std::getline(iss, token, '|');
+        item.price = std::stod(token);
+
+        // Read Stock
+        std::getline(iss, token, '|');
+        item.stock = std::stoi(token);
+
+        // Read Remaining
+        std::getline(iss, token, '|');
+        item.remaining = std::stoi(token);
+
+        // Read Sold
+        std::getline(iss, token, '|');
+        item.sold = std::stoi(token);
+
+        // Add to both lists
+        items.append(item);
+        filteredItems.append(item);
+    }
+
+    file.close();
 } 

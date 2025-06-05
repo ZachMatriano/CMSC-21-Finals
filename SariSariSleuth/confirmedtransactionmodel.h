@@ -26,6 +26,11 @@ class ConfirmedTransactionModel : public QAbstractTableModel {
     private:
         QVector<ConfirmedTransaction> transactions;
         int nextTransactionId;
+        const QString DATA_FILE = "Data/transaction_history.txt";
+
+        // Helper functions for file operations
+        void writeTransactionToFile(const ConfirmedTransaction &transaction);
+        void readDataFromFile();
 
     public:
         explicit ConfirmedTransactionModel(QObject *parent = nullptr);
