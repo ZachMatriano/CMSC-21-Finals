@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>clear-analysis.png</file>
+        <file>clear-logging.png</file>
+        <file>clear-sales.png</file>
+        <file>clear-transactions.png</file>
+        <file>main-bg.png</file>
+        <file>sold.png</file>
+    </qresource>
+</RCC>

@@ -17,6 +17,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     
+    // Set up the main buttons for tabs
+    QVector<QPair<QPushButton*, QWidget*>> tabMappings = {
+        {ui->salesButton, ui->salesTab},
+        {ui->transactionsButton, ui->transactionsTab},
+        {ui->loggingButton, ui->loggingTab},
+        {ui->analyticsButton, ui->analyticsTab}
+    };
+    for (const auto& pair : tabMappings) {
+        connect(pair.first, &QPushButton::clicked, this, [=]() {
+            ui->stackedWidget->setCurrentWidget(pair.second);
+        });
+    }
+
     // Set up the table view for stock
     ui->stockTableView->setModel(stockModel);
     ui->stockTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -51,6 +64,34 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Initialize analytics with current data
     onTimePeriodChanged(0); // This will load data for LastWeek period
+
+    // Icons and Shapes
+    struct ButtonStyle {
+        QPushButton* button;
+        QString iconPath;
+    };
+
+    QList<ButtonStyle> styledButtons = {
+        {ui->salesButton, ":/resources/clear-sales.png"},
+        {ui->transactionsButton, ":/resources/clear-transactions.png"},
+        {ui->loggingButton, ":/resources/clear-logging.png"},
+        {ui->analyticsButton, ":/resources/clear-analysis.png"}
+    };
+
+    for (const auto& item : styledButtons) {
+        item.button->setStyleSheet(QString(R"(
+        QPushButton {
+            background-color: transparent;
+            border: none;
+            qproperty-icon: url(%1);
+            qproperty-iconSize: 50px 50px;
+        }
+        QPushButton:hover {
+            background-color: rgba(255, 255, 255, 30);
+            border-radius: 10px;
+        }
+    )").arg(item.iconPath));
+    }
 }
 
 // DESTRUCTOR
