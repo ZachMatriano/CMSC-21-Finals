@@ -31,10 +31,10 @@ class TransactionModel : public QAbstractTableModel {
         // Helper functions for file operations
         void writeTransactionToFile(const Transaction &transaction);
         void deleteTransactionFromFile(int id);
-        void readDataFromFile();
 
     public:
         explicit TransactionModel(QObject *parent = nullptr); //Constructor
+        void readDataFromFile();
 
     // Required overrides for QAbstractTableModel
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;

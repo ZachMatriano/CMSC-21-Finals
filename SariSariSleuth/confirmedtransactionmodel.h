@@ -30,9 +30,9 @@ class ConfirmedTransactionModel : public QAbstractTableModel {
 
         // Helper functions for file operations
         void writeTransactionToFile(const ConfirmedTransaction &transaction);
-        void readDataFromFile();
 
     public:
+        void readDataFromFile();
         explicit ConfirmedTransactionModel(QObject *parent = nullptr);
 
     // Required overrides for QAbstractTableModel

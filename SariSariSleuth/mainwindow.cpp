@@ -3,7 +3,11 @@
 #include "itemselectiondialog.h"
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QFileDialog>
 #include <algorithm>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
 
 // CONSTRUCTOR
 MainWindow::MainWindow(QWidget *parent)
@@ -50,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Connect signals and slots for first tab
     connect(ui->manualAddButton, &QPushButton::clicked, this, &MainWindow::onManualAddClicked);
+    connect(ui->backupButton, &QPushButton::clicked, this, &MainWindow::onBackupButtonClicked);
+    connect(ui->restoreButton, &QPushButton::clicked, this, &MainWindow::onRestoreButtonClicked);
 
     // Connect signals and slots for transaction management
     connect(ui->confirmButton, &QPushButton::clicked, this, &MainWindow::onConfirmTransactionClicked);
@@ -282,6 +288,116 @@ void MainWindow::onManualAddClicked() {
 
         //Add transactions
         transactionModel->addTransaction(selectedItem, quantity);
+    }
+}
+
+void MainWindow::onBackupButtonClicked() {
+    // Create backup directory with timestamp
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    QString timestamp = currentDateTime.toString("yyyy-MM-dd_hh-mm-ss");
+    QString backupDir = "Backup/" + timestamp;
+    
+    // Create the backup directory
+    QDir dir;
+    if (!dir.mkpath(backupDir)) {
+        QMessageBox::critical(this, "Backup Error", "Failed to create backup directory.");
+        return;
+    }
+    
+    // Copy all files from Data directory to backup directory
+    QDir dataDir("Data");
+    if (!dataDir.exists()) {
+        QMessageBox::critical(this, "Backup Error", "Data directory not found.");
+        return;
+    }
+    
+    QStringList files = dataDir.entryList(QDir::Files);
+    bool success = true;
+    
+    for (const QString &file : files) {
+        QString sourcePath = dataDir.filePath(file);
+        QString destPath = backupDir + "/" + file;
+        if (!QFile::copy(sourcePath, destPath)) {
+            success = false;
+            break;
+        }
+    }
+    
+    if (success) {
+        QMessageBox::information(this, "Backup Complete", "Data has been successfully backed up to: " + backupDir);
+    } else {
+        QMessageBox::critical(this, "Backup Error", "Failed to copy some files during backup.");
+    }
+}
+
+void MainWindow::onRestoreButtonClicked() {
+    // Prompt user to select a backup directory
+    QString backupDir = QFileDialog::getExistingDirectory(this, "Select Backup Directory", "Backup",
+        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    
+    if (backupDir.isEmpty()) {
+        return; // User cancelled
+    }
+    
+    // Verify the directory contains the expected files
+    QDir dir(backupDir);
+    QStringList files = dir.entryList(QDir::Files);
+    if (files.isEmpty()) {
+        QMessageBox::critical(this, "Restore Error", "Selected directory is empty.");
+        return;
+    }
+    
+    // Confirm with user before proceeding
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Confirm Restore",
+        "This will replace all current data with the backup data. Are you sure you want to continue?",
+        QMessageBox::Yes | QMessageBox::No);
+    
+    if (reply != QMessageBox::Yes) {
+        return;
+    }
+    
+    // Clear current data
+    stockModel->clear();
+    transactionModel->clearTransactions();
+    confirmedTransactionModel->clearTransactions();
+    
+    // Copy files from backup to Data directory
+    QDir dataDir("Data");
+    if (!dataDir.exists()) {
+        if (!dataDir.mkpath(".")) {
+            QMessageBox::critical(this, "Restore Error", "Failed to create Data directory.");
+            return;
+        }
+    }
+    
+    bool success = true;
+    for (const QString &file : files) {
+        QString sourcePath = dir.filePath(file);
+        QString destPath = dataDir.filePath(file);
+        
+        // Remove existing file if it exists
+        if (QFile::exists(destPath)) {
+            QFile::remove(destPath);
+        }
+        
+        if (!QFile::copy(sourcePath, destPath)) {
+            success = false;
+            break;
+        }
+    }
+    
+    if (success) {
+        // Reload models with new data
+        stockModel->readDataFromFile();
+        transactionModel->readDataFromFile();
+        confirmedTransactionModel->readDataFromFile();
+        
+        // Update analytics
+        onTimePeriodChanged(ui->timePeriodComboBox->currentIndex());
+        
+        QMessageBox::information(this, "Restore Complete", "Data has been successfully restored from: " + backupDir);
+    } else {
+        QMessageBox::critical(this, "Restore Error", "Failed to restore some files.");
     }
 }
 
