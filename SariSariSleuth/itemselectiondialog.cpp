@@ -6,27 +6,6 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     setWindowTitle("Select Item");
     setMinimumWidth(700);
 
-    // Create search bar
-    searchBar = new QLineEdit(this);
-    searchBar->setPlaceholderText("🔎 Search items...");
-    searchBar->setStyleSheet(
-        "QLineEdit {"
-        "    color: rgb(0, 71, 255);"
-        "    background-color: rgb(255, 255, 255);"
-        "    font: 500 9pt \"Montserrat\";"
-        "    padding: 6px;"
-        "    border: 1px solid rgb(200, 200, 200);"
-        "    border-radius: 4px;"
-        "}"
-    );
-
-    // Create proxy model for filtering
-    proxyModel = new QSortFilterProxyModel(this);
-    proxyModel->setSourceModel(stockModel);
-    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    proxyModel->setFilterKeyColumn(1);  // Filter only on the product name column
-    proxyModel->setFilterRole(Qt::DisplayRole);  // Filter on the display text
-
     // Create table view
     tableView = new QTableView(this);
     tableView->setModel(stockModel);
