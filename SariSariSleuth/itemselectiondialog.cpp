@@ -7,9 +7,6 @@
 ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : QDialog(parent) , stockModel(model) {
     setWindowTitle("Select Item");
     setMinimumWidth(700);
-
-<<<<<<< HEAD
-=======
     // Create search bar
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("Search items...");
@@ -30,8 +27,6 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setFilterKeyColumn(1);  // Filter only on the product name column
     proxyModel->setFilterRole(Qt::DisplayRole);  // Filter on the display text
-
->>>>>>> parent of a51bff2 (changed the appearances of not valid cases)
     // Create table view
     tableView = new QTableView(this);
     tableView->setModel(proxyModel);
@@ -46,10 +41,11 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "    color: black;"
         "    background-color: rgb(211, 211, 211);"
         "    font: 500 9pt \"Montserrat\";"
+        "    color: rgb();"
         "    border: none;"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
-        "    gridline-color: rgb(220, 220, 220);"
+        "    gridline: none;"
         "}"
         "QTableView::item:selected {"
         "    background-color: rgb(38,255,0);"
