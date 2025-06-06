@@ -12,6 +12,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableView->verticalHeader()->setVisible(false);
 
     // Apply your custom stylesheet
@@ -19,13 +20,15 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "QTableView {"
         "    color: black;"
         "    background-color: rgb(255, 255, 255);"
-        "    selection-background-color: rgb(230, 240, 255);"
-        "    selection-color: rgb(0, 71, 255);"
         "    font: 700 9pt \"Montserrat\";"
         "    border: 1px solid rgb(220, 220, 220);"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
         "    gridline-color: rgb(220, 220, 220);"
+        "}"
+        "QTableView::item:selected {"
+        "    background-color: rgb(230, 240, 255);"
+        "    color: rgb(0, 71, 255);"
         "}"
         "QHeaderView::section {"
         //"    margin-top: 2px;  "

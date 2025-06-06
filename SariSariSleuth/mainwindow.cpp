@@ -122,6 +122,9 @@ void MainWindow::onAddButtonClicked() {
             color: black;
         }
         QLabel {
+            background-color: rgb(79, 135, 255);
+            padding: 4px;
+            border-radius: 4px;
             font: 700 9pt "Montserrat";
             color: black;
         }
@@ -137,7 +140,14 @@ void MainWindow::onAddButtonClicked() {
             background-color: rgb(230, 240, 255);
         }
         QSpinBox {
-            color: white;
+            color: black;
+            background-color: white;
+            font: 700 9pt "Montserrat";
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 4px;
+        }
+        QDoubleSpinBox {
+            color: black;
             background-color: white;
             font: 700 9pt "Montserrat";
             border: 1px solid rgb(200, 200, 200);

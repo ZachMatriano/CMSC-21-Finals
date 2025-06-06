@@ -14,7 +14,7 @@
    <string>SariSariSleuth</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 71, 255)</string>
+   <string notr="true">background-color: rgb(0, 71, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -446,9 +446,8 @@ border-radius: 10px;</string>
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-            color: rgb(0, 71, 255);
-            background-color: rgb(255, 255, 255);
+           <string notr="true">color: rgb(0, 71, 255);
+background-color: rgb(255, 255, 255);
             selection-background-color: rgb(230, 240, 255);
             selection-color: rgb(0, 71, 255);
 			font: 700 9pt &quot;Montserrat&quot;;
