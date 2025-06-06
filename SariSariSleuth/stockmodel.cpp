@@ -52,12 +52,12 @@ QVariant StockModel::headerData(int section, Qt::Orientation orientation, int ro
 
     if (orientation == Qt::Horizontal) {
         switch (section) {
-            case 0: return "ID";
-            case 1: return "Product Name";
-            case 2: return "Price";
-            case 3: return "Stock";
-            case 4: return "Remaining";
-            case 5: return "Sold";
+            case 0: return "ID 🎫";
+            case 1: return "Item Name 🛍️";
+            case 2: return "Price 💥";
+            case 3: return "Stock 📦";
+            case 4: return "Remaining 🎉";
+            case 5: return "Sold ✨";
             default: return QVariant();
         }
     }

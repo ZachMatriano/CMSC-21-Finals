@@ -233,7 +233,7 @@ border-radius: 10px;</string>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="salesTab">
           <layout class="QVBoxLayout" name="salesLayout">
@@ -531,13 +531,19 @@ color: rgb(255, 255, 255);</string>
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(0, 71, 255);
-background-color: rgb(255, 255, 255);
-                selection-background-color: rgb(230, 240, 255);
-                selection-color: rgb(0, 71, 255);
-				font: 600 12pt &quot;Montserrat&quot;;
-  border: 1.5px solid rgb(0, 71, 255);
+              <string notr="true">background-color: rgb(255, 255, 255);
+selection-background-color: rgb(0, 71, 255);
+font: 600 12pt &quot;Montserrat&quot;;
+color: rgb(0, 71, 255);
+selection-color: rgb(255, 255, 255);
+border-radius: 0px;
               </string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Plain</enum>
              </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
@@ -548,6 +554,12 @@ background-color: rgb(255, 255, 255);
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
              </property>
+             <property name="showGrid">
+              <bool>false</bool>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::PenStyle::NoPen</enum>
+             </property>
              <property name="sortingEnabled">
               <bool>false</bool>
              </property>
@@ -555,22 +567,6 @@ background-color: rgb(255, 255, 255);
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <spacer name="horizontalSpacer_10">
-               <property name="orientation">
-                <enum>Qt::Orientation::Vertical</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Policy::Preferred</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
              <item>
               <spacer name="horizontalSpacer_11">
                <property name="orientation">
@@ -740,19 +736,33 @@ QPushButton:hover {
              </property>
              <property name="styleSheet">
               <string notr="true">QTableView{
-  border: 1.5px solid rgb(0, 71, 255);
+	border: none;
+	border-radius: 0px;
 	color: rgb(0, 71, 255);
-	 background-color: rgb(255, 255, 255);
-     selection-background-color: rgb(230, 240, 255);
-     selection-color: rgb(0, 71, 255);
-	 font: 500 11pt &quot;Montserrat&quot;;
+	background-color: rgb(255, 255, 255);
+    selection-background-color: rgb(0, 71, 255);
+    selection-color: rgb(255, 255, 255);
+	font: 500 11pt &quot;Montserrat&quot;;
 }
 
 QHeaderView::section{
 	font: 700 12pt &quot;Montserrat&quot;;
 	background-color: rgb(255, 255, 255);
+	border: none;
 	color: rgb(0, 71, 255);
 }</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+             <property name="tabKeyNavigation">
+              <bool>true</bool>
              </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
@@ -763,9 +773,24 @@ QHeaderView::section{
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
              </property>
+             <property name="showGrid">
+              <bool>false</bool>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::PenStyle::NoPen</enum>
+             </property>
              <property name="sortingEnabled">
               <bool>false</bool>
              </property>
+             <property name="cornerButtonEnabled">
+              <bool>false</bool>
+             </property>
+             <attribute name="horizontalHeaderHighlightSections">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderHighlightSections">
+              <bool>true</bool>
+             </attribute>
             </widget>
            </item>
            <item>
@@ -997,7 +1022,7 @@ QPushButton:hover {
               padding: 0px;</string>
                   </property>
                   <property name="text">
-                   <string>PRODUCTS TO STOCK 📦</string>
+                   <string>PRODUCTS TO STOCK 📦📌</string>
                   </property>
                  </widget>
                 </item>

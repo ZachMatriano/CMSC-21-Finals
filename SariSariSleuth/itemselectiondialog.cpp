@@ -8,6 +8,13 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     setWindowTitle("Select Item");
     setMinimumWidth(700);
 
+    this->setStyleSheet(R"(
+        QDialog {
+            background-color: rgb(211, 211, 211);
+            font: 500 9pt "Montserrat";
+        }
+    )");
+
     // Create search bar
     searchBar = new QLineEdit(this);
     searchBar->setPlaceholderText("🔎 Search items...");
@@ -40,22 +47,22 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
 
     tableView->setStyleSheet(
         "QTableView {"
-        "    color: black;"
-        "    background-color: rgb(211, 211, 211);"
+        "    background-color: rgb(255, 255, 255);"
         "    font: 500 9pt \"Montserrat\";"
+        "    color: rgb();"
         "    border: none;"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
-        "    gridline-color: rgb(220, 220, 220);"
+        "    gridline: none;"
         "}"
         "QTableView::item:selected {"
-        "    background-color: rgb(38,255,0);"
+        "    background-color: rgb(38, 255, 0);"
         "    color: rgb(11,129,0);"
         "}"
         "QHeaderView::section {"
         //"    margin-top: 2px;  "
-        "    color:rgb(0, 71, 255);"
-        "    background-color: rgb(255, 255, 255);"
+        "    color:rgb(255, 255, 255);"
+        "    background-color: rgb(0, 71, 255);"
         "    font: 800 9pt \"Montserrat\";"
         "    padding: 4px;"
         "    border: none;"
