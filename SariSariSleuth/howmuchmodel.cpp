@@ -8,24 +8,20 @@ HowMuchModel::HowMuchModel(QObject *parent)
 {
 }
 
-int HowMuchModel::rowCount(const QModelIndex &parent) const
-{
+int HowMuchModel::rowCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     return recommendations.size();
 }
 
-QVariant HowMuchModel::data(const QModelIndex &index, int role) const
-{
+QVariant HowMuchModel::data(const QModelIndex &index, int role) const {
     if (!index.isValid() || index.row() >= recommendations.size())
         return QVariant();
 
     const StockRecommendation &recommendation = recommendations[index.row()];
 
     if (role == Qt::DisplayRole) {
-        return QString("%1 - Stock: %2")
-            .arg(recommendation.productName)
-            .arg(QString::number(recommendation.amountToStock, 'f', 0));
+        return QString("%1 - Stock: %2").arg(recommendation.productName).arg(QString::number(recommendation.amountToStock, 'f', 0));
     }
     else if (role == Qt::FontRole && recommendation.isOutOfStock) {
         QFont font;
@@ -36,17 +32,9 @@ QVariant HowMuchModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void HowMuchModel::setDaysToStock(int days)
-{
-    if (daysToStock != days) {
-        daysToStock = days;
-        beginResetModel();
-        endResetModel();
-    }
-}
+void HowMuchModel::updateRecommendations(const QVector<ProductAnalytics>& analytics, int daysToStock, const StockModel* stockModel) {
 
-void HowMuchModel::updateRecommendations(const QVector<ProductAnalytics>& analytics, int daysToStock, const StockModel* stockModel)
-{
+    // Called by onDaysToStockChanged and onTimePeriodChanged
     beginResetModel();
     recommendations.clear();
 

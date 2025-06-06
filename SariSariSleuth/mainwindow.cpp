@@ -104,6 +104,11 @@ MainWindow::MainWindow(QWidget *parent)
 // DESTRUCTOR
 MainWindow::~MainWindow() {
     delete ui;
+    delete stockModel;
+    delete transactionModel;
+    delete confirmedTransactionModel;
+    delete analyticsModel;
+    delete howMuchModel;
 }
 
 // TAB 3

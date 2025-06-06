@@ -12,24 +12,23 @@ struct StockRecommendation {
     bool isOutOfStock;
 };
 
-class HowMuchModel : public QAbstractListModel
-{
+class HowMuchModel : public QAbstractListModel {
     Q_OBJECT
 
-public:
-    explicit HowMuchModel(QObject *parent = nullptr);
+    private:
+        QVector<StockRecommendation> recommendations;
+        int daysToStock;
+
+    public:
+        explicit HowMuchModel(QObject *parent = nullptr);
 
     // Required overrides for QAbstractListModel
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+        int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+        QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     // Custom methods
-    void updateRecommendations(const QVector<ProductAnalytics>& analytics, int daysToStock, const StockModel* stockModel);
-    void setDaysToStock(int days);
-
-private:
-    QVector<StockRecommendation> recommendations;
-    int daysToStock;
+        void updateRecommendations(const QVector<ProductAnalytics>& analytics, int daysToStock, const StockModel* stockModel);
+        void setDaysToStock(int days);
 };
 
 #endif // HOWMUCHMODEL_H 
