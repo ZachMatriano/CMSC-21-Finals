@@ -233,7 +233,7 @@ border-radius: 10px;</string>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="salesTab">
           <layout class="QVBoxLayout" name="salesLayout">
