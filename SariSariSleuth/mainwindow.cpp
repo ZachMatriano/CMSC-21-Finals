@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Set up the table view for stock
     ui->stockTableView->setModel(stockModel);
     ui->stockTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->stockTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     
     // Set up the table view for transactions
     ui->transactionTableView->setModel(transactionModel);

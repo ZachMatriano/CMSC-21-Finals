@@ -20,7 +20,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "QTableView {"
         "    color: black;"
         "    background-color: rgb(255, 255, 255);"
-        "    font: 700 9pt \"Montserrat\";"
+        "    font: 500 9pt \"Montserrat\";"
         "    border: 1px solid rgb(220, 220, 220);"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
@@ -32,9 +32,9 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "}"
         "QHeaderView::section {"
         //"    margin-top: 2px;  "
-        "    color:black;"
+        "    color:rgb(0, 71, 255);"
         "    background-color: rgb(245, 245, 245);"
-        "    font: 700 9pt \"Montserrat\";"
+        "    font: 800 9pt \"Montserrat\";"
         "    padding: 4px;"
         "    border: 1px solid rgb(200, 200, 200);"
         "}"
@@ -85,18 +85,47 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
 
 
     // Create buttons
-    acceptButton = new QPushButton("Accept", this);
-    cancelButton = new QPushButton("Cancel", this);
+    acceptButton = new QPushButton("ORDER", this);
+    acceptButton->setStyleSheet(
+        "QPushButton {"
+        "    background-color: #4CAF50;"    // green
+        "    color: white;"
+        "    border: none;"
+        "    padding: 6px 12px;"
+        "    border-radius: 5px;"
+        "    font: 800 9pt \"Montserrat\";"
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #45a049;"
+        "}"
+        );
+
+    cancelButton = new QPushButton("CANCEL", this);
+    cancelButton->setStyleSheet(
+        "QPushButton {"
+        "    background-color: #f44336;"    // red
+        "    color: white;"
+        "    border: none;"
+        "    padding: 6px 12px;"
+        "    border-radius: 5px;"
+        "    font: 800 9pt \"Montserrat\";"
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #d32f2f;"
+        "}"
+        );
+
 
     // Create layouts
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-
+    QHBoxLayout *bottomRowLayout = new QHBoxLayout();
     mainLayout->addWidget(tableView);
-    mainLayout->addWidget(quantitySpinBox);
-    buttonLayout->addWidget(acceptButton);
-    buttonLayout->addWidget(cancelButton);
-    mainLayout->addLayout(buttonLayout);
+    bottomRowLayout->addStretch();  // Optional: adds space between spinbox and buttons
+    bottomRowLayout->addWidget(quantitySpinBox);
+    bottomRowLayout->addWidget(acceptButton);
+    bottomRowLayout->addWidget(cancelButton);
+
+    mainLayout->addLayout(bottomRowLayout);
 
     // Connect signals and slots
     connect(tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ItemSelectionDialog::onItemSelected);
