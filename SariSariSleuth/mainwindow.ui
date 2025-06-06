@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1486</width>
+    <width>1480</width>
     <height>937</height>
    </rect>
   </property>
@@ -257,7 +257,7 @@ border-radius: 10px;</string>
              <property name="styleSheet">
               <string notr="true">background-color: rgb(255, 255, 255);
 border-radius: 15px;
-border: 5px solid rgb(0, 71, 255);</string>
+border: 2px solid rgb(0, 71, 255);</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::Shape::StyledPanel</enum>
@@ -375,11 +375,8 @@ border: 5px solid rgb(0, 71, 255);</string>
                     <height>100</height>
                    </size>
                   </property>
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(0,71,255);
+                   <string>background-color: rgb(0,71,255);
 border: none;
 border-radius: 25px;
 font: 700 24pt &quot;Montserrat&quot;;
@@ -438,7 +435,7 @@ color: rgb(255, 255, 255);</string>
                    <string notr="true">background-color: rgb(211, 211, 211);
 border: none;
 border-radius: 10px;
-font: 700 12pt &quot;Montserrat&quot;;
+font: 700 12pt "Montserrat";
 color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
@@ -458,7 +455,7 @@ color: rgb(255, 255, 255);</string>
                    <string notr="true">background-color: rgb(211, 211, 211);
 border: none;
 border-radius: 10px;
-font: 700 12pt &quot;Montserrat&quot;;
+font: 700 12pt "Montserrat";
 color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
@@ -595,22 +592,21 @@ background-color: rgb(255, 255, 255);
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
-                <string notr="true">QPushButton {
-	background-color: rgb(0, 71, 255);
-	border: none;
-	border-radius: 15px;
-	font: 700 15pt &quot;Montserrat&quot;;
-	color: white;
-	padding: 5px 15px;
+                <string notr="true">QPushButton{
+
+                  background-color: #4CAF50;
+				  border: 1.5px solid rgb(0, 71, 255);
+                  border-radius: 15px;
+                  font: 700 15pt &quot;Montserrat&quot;;
+                  color: white;
 }
-QPushButton:hover {
-	background-color: rgb(38, 255, 0);
-	color: rgb(21, 139, 0);
-} 
+QPushButton:hover{
+		background-color: #45a049;
+}
                 </string>
                </property>
                <property name="text">
-                <string>CONFIRM ✅</string>
+                <string>CONFIRM</string>
                </property>
               </widget>
              </item>
@@ -633,20 +629,19 @@ QPushButton:hover {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	background-color: rgb(0, 71, 255);
-	border-radius: 15px;
-	border: none;
-	font: 700 15pt &quot;Montserrat&quot;;
-	color: rgb(255,255,255);
-	padding: 5px 15px;
-}
+background-color: rgb(255, 0, 0);
+                  border-radius: 15px;
+border: 1.5px solid rgb(0, 71, 255);
+                  font: 700 15pt &quot;Montserrat&quot;;
+                  color: rgb(255,255,255);
+                  padding: 5px 15px;
+            }
 QPushButton:hover {
-	background-color: rgb(255, 0, 0);
-	color: rgb(85, 0, 0)
+	background-color: #d32f2f;
 }</string>
                </property>
                <property name="text">
-                <string>DELETE 🗑️</string>
+                <string>DELETE</string>
                </property>
               </widget>
              </item>
@@ -710,11 +705,8 @@ QPushButton:hover {
 				font: 300 14pt &quot;Montserrat&quot;;
 </string>
              </property>
-             <property name="text">
-              <string/>
-             </property>
              <property name="placeholderText">
-              <string>🔎 Filter by product name...</string>
+              <string>Filter by product name...</string>
              </property>
             </widget>
            </item>
@@ -795,20 +787,19 @@ QHeaderView::section{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	background-color: rgb(0, 71, 255);
-	border-radius: 15px;
-	border: none;
-	font: 700 15pt &quot;Montserrat&quot;;
-	color: rgb(255,255,255);
-	padding: 5px 15px;
+background-color: #4CAF50;
+border: 1.5px solid rgb(0, 71, 255);
+                  border-radius: 15px;
+                  font: 700 15pt &quot;Montserrat&quot;;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 15px;
 }
-QPushButton:hover {
-	background-color: rgb(38, 255, 0);
-	color: rgb(21, 139, 0);
+QPushButton:hover{
+		background-color: #45a049;
 }</string>
                </property>
                <property name="text">
-                <string>ADD ✔️</string>
+                <string>ADD</string>
                </property>
               </widget>
              </item>
@@ -831,20 +822,19 @@ QPushButton:hover {
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	background-color: rgb(255, 255, 255);
-	border-radius: 15px;
-	border: 1.5px solid rgb(0, 71, 255);
-	font: 700 15pt &quot;Montserrat&quot;;
-	color: rgb(0, 71, 255);
-	padding: 5px 15px;
+background-color: rgb(255, 255, 255);
+                  border-radius: 15px;
+border: 1.5px solid rgb(0, 71, 255);
+                  font: 700 15pt &quot;Montserrat&quot;;
+                  color: rgb(128, 128, 128);
+                  padding: 5px 15px;
 }
 QPushButton:hover{
-	background-color:  rgb(0,71,255);
-	color: rgb(255,255,255);
+	background-color:  rgb(223, 223, 223)
 }</string>
                </property>
                <property name="text">
-                <string>EDIT ✏️</string>
+                <string>EDIT</string>
                </property>
               </widget>
              </item>
@@ -867,20 +857,19 @@ QPushButton:hover{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	background-color: rgb(0, 71, 255);
-	border-radius: 15px;
-	border: none;
-	font: 700 15pt &quot;Montserrat&quot;;
-	color: rgb(255,255,255);
-	padding: 5px 15px;
+border: 1.5px solid rgb(0, 71, 255);
+background-color: #f44336;
+                  border-radius: 15px;
+                  font: 700 15pt &quot;Montserrat&quot;;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 15px;
 }
 QPushButton:hover {
-	background-color: rgb(255, 0, 0);
-	color: rgb(85, 0, 0);
+	background-color: #d32f2f;
 }</string>
                </property>
                <property name="text">
-                <string>DELETE ❌</string>
+                <string>DELETE</string>
                </property>
               </widget>
              </item>
@@ -987,21 +976,12 @@ QPushButton:hover {
               padding: 0px;</string>
                   </property>
                   <property name="text">
-                   <string>PRODUCTS TO STOCK 📦</string>
+                   <string>PRODUCTS TO STOCK</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="label_2">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: transparent;
-font: 700 15pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255);
-padding: 2px;</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::Shape::NoFrame</enum>
-                  </property>
                   <property name="text">
                    <string>Time Period:</string>
                   </property>
@@ -1020,9 +1000,6 @@ padding: 2px;</string>
                     color: rgb(0, 71, 255);
                     padding: 2px;
     </string>
-                  </property>
-                  <property name="frame">
-                   <bool>true</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -1126,7 +1103,7 @@ padding: 2px;</string>
                font: 900 13pt &quot;Montserrat&quot;;</string>
                   </property>
                   <property name="text">
-                   <string>HOW MUCH TO STOCK 📦🚨</string>
+                   <string>HOW MUCH TO STOCK</string>
                   </property>
                  </widget>
                 </item>
@@ -1228,8 +1205,8 @@ padding: 2px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1486</width>
-     <height>17</height>
+     <width>1480</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

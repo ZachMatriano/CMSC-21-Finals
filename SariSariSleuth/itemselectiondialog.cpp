@@ -20,7 +20,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "    color: black;"
         "    background-color: rgb(255, 255, 255);"
         "    font: 500 9pt \"Montserrat\";"
-        "    border: none;"
+        "    border: 1px solid rgb(220, 220, 220);"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
         "    gridline-color: rgb(220, 220, 220);"
@@ -30,11 +30,12 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "    color: rgb(0, 71, 255);"
         "}"
         "QHeaderView::section {"
-        "    color: rgb(0, 71, 255);"
-        "    background-color: rgb(255, 255, 255);"
+        //"    margin-top: 2px;  "
+        "    color:rgb(0, 71, 255);"
+        "    background-color: rgb(245, 245, 245);"
         "    font: 800 9pt \"Montserrat\";"
         "    padding: 4px;"
-        "    border: none;"
+        "    border: 1px solid rgb(200, 200, 200);"
         "}"
         );
 
@@ -82,11 +83,11 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         );
 
     // Create buttons
-    acceptButton = new QPushButton("ORDER 💸", this);
+    acceptButton = new QPushButton("ORDER", this);
     acceptButton->setStyleSheet(
         "QPushButton {"
-        "    background-color: rgb(38,255,0);"    // green
-        "    color: rgb(21,139,0);"
+        "    background-color: #4CAF50;"    // green
+        "    color: white;"
         "    border: none;"
         "    padding: 6px 12px;"
         "    border-radius: 5px;"
@@ -97,10 +98,10 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "}"
         );
 
-    cancelButton = new QPushButton("CANCEL ⛔", this);
+    cancelButton = new QPushButton("CANCEL", this);
     cancelButton->setStyleSheet(
         "QPushButton {"
-        "    background-color: rgb(255,0,0);"    // red
+        "    background-color: #f44336;"    // red
         "    color: white;"
         "    border: none;"
         "    padding: 6px 12px;"
