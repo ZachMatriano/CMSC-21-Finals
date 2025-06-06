@@ -10,7 +10,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
 
     // Create search bar
     searchBar = new QLineEdit(this);
-    searchBar->setPlaceholderText("Search items...");
+    searchBar->setPlaceholderText("🔎 Search items...");
     searchBar->setStyleSheet(
         "QLineEdit {"
         "    color: rgb(0, 71, 255);"
