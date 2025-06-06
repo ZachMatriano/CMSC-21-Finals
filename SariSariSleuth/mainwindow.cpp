@@ -101,26 +101,117 @@ MainWindow::~MainWindow() {
 // TAB 3
 void MainWindow::onAddButtonClicked() {
     bool ok;
-    QString productName = QInputDialog::getText(this, "Add Product", "Product Name:", QLineEdit::Normal, "", &ok);
-    if (!ok || productName.isEmpty())
-        return;
+    QString productName;
+    double price = 0.0;
+    int stock = 0;
 
-    double price = QInputDialog::getDouble(this, "Add Product", "Price:", 0.0, 0.0, 1000000.0, 2, &ok);
-    if (!ok)
-        return;
+    // Shared stylesheet
+    QString inputDialogStyle = R"(
+        QInputDialog {
+            background-color: rgb(0, 71, 255);
+            font: 700 9pt "Montserrat";
+            color: black;
+            border: 1px solid rgb(220, 220, 220);
+            border-radius: 10px;
+        }
+        QLineEdit {
+            background-color: white;
+            border: 1px solid rgb(200, 200, 200);
+            padding: 4px;
+            font: 700 9pt "Montserrat";
+            color: black;
+        }
+        QLabel {
+            background-color: rgb(79, 135, 255);
+            padding: 4px;
+            border-radius: 4px;
+            font: 700 9pt "Montserrat";
+            color: black;
+        }
+        QPushButton {
+            color: black;
+            background-color: rgb(245, 245, 245);
+            font: 700 9pt "Montserrat";
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 5px;
+            padding: 4px 10px;
+        }
+        QPushButton:hover {
+            background-color: rgb(230, 240, 255);
+        }
+        QSpinBox {
+            color: black;
+            background-color: white;
+            font: 700 9pt "Montserrat";
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 4px;
+        }
+        QDoubleSpinBox {
+            color: black;
+            background-color: white;
+            font: 700 9pt "Montserrat";
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 4px;
+        }
 
-    int stock = QInputDialog::getInt(this, "Add Product", "Initial Stock:", 0, 0, 1000000, 1, &ok);
-    if (!ok)
-        return;
+    )";
 
+    // Product Name
+    QInputDialog nameDialog(this);
+    nameDialog.setWindowTitle("Add Product");
+    nameDialog.setLabelText("Product Name:");
+    nameDialog.setTextValue("");
+    nameDialog.setStyleSheet(inputDialogStyle);
+
+    if (nameDialog.exec() == QDialog::Accepted) {
+        productName = nameDialog.textValue();
+        if (productName.isEmpty())
+            return;
+    } else {
+        return;
+    }
+
+    // Price
+    QInputDialog priceDialog(this);
+    priceDialog.setWindowTitle("Add Product");
+    priceDialog.setLabelText("Price:");
+    priceDialog.setInputMode(QInputDialog::DoubleInput);
+    priceDialog.setDoubleDecimals(2);
+    priceDialog.setDoubleRange(0.0, 1000000.0);
+    priceDialog.setDoubleValue(0.0);
+    priceDialog.setStyleSheet(inputDialogStyle);
+
+    if (priceDialog.exec() == QDialog::Accepted) {
+        price = priceDialog.doubleValue();
+    } else {
+        return;
+    }
+
+    // Stock
+    QInputDialog stockDialog(this);
+    stockDialog.setWindowTitle("Add Product");
+    stockDialog.setLabelText("Initial Stock:");
+    stockDialog.setInputMode(QInputDialog::IntInput);
+    stockDialog.setIntRange(0, 1000000);
+    stockDialog.setIntValue(0);
+    stockDialog.setStyleSheet(inputDialogStyle);
+
+    if (stockDialog.exec() == QDialog::Accepted) {
+        stock = stockDialog.intValue();
+    } else {
+        return;
+    }
+
+    // Prepare new StockItem
     StockItem item;
-    std::vector<int> ids; // Unique ID but also slot filling
+    std::vector<int> ids;
     for (int i = 0; i < this->stockModel->rowCount(); i++) {
         ids.push_back(this->stockModel->getItem(i).id);
     }
+
     int newId = 1;
     for (int i = 0; i < ids.size(); i++) {
-        if(std::find(ids.begin(), ids.end(), newId) != ids.end()) {
+        if (std::find(ids.begin(), ids.end(), newId) != ids.end()) {
             newId++;
         } else {
             break;
@@ -136,6 +227,7 @@ void MainWindow::onAddButtonClicked() {
 
     stockModel->addItem(item);
 }
+
 
 void MainWindow::onEditButtonClicked()
 {
