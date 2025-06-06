@@ -116,11 +116,11 @@ void MainWindow::onAddButtonClicked() {
     // Shared stylesheet
     QString inputDialogStyle = R"(
         QInputDialog {
-            background-color: rgb(0, 71, 255);
+            background-color: rgb(211, 211, 211);
             font: 700 9pt "Montserrat";
             color: black;
             border: 1px solid rgb(220, 220, 220);
-            border-radius: 10px;
+            border-radius: none;
         }
         QLineEdit {
             background-color: white;
@@ -130,22 +130,24 @@ void MainWindow::onAddButtonClicked() {
             color: black;
         }
         QLabel {
-            background-color: rgb(79, 135, 255);
+            background-color: rgb(0, 71, 255);
             padding: 4px;
-            border-radius: 4px;
+            border-radius: 2px;
             font: 700 9pt "Montserrat";
-            color: black;
+            color: rgb(255, 255, 255);
         }
         QPushButton {
-            color: black;
-            background-color: rgb(245, 245, 245);
+            background-color: rgb(255, 255, 255);
             font: 700 9pt "Montserrat";
-            border: 1px solid rgb(200, 200, 200);
+            color: rgb(0, 71, 255);
+            border: none;
             border-radius: 5px;
             padding: 4px 10px;
         }
         QPushButton:hover {
-            background-color: rgb(230, 240, 255);
+            background-color: rgb(0,71,255);
+            border: 1px solid rgb(0, 71, 255);
+            color: rgb(255,255,255);
         }
         QSpinBox {
             color: black;
@@ -239,28 +241,132 @@ void MainWindow::onAddButtonClicked() {
 
 void MainWindow::onEditButtonClicked()
 {
+    // Local shared stylesheet
+    QString inputDialogStyle = R"(
+        QInputDialog {
+            background-color: rgb(211,211,211);
+            font: 700 9pt "Montserrat";
+            color: black;
+            border: 1px solid rgb(220,220,220);
+        }
+        QLineEdit {
+            background-color: white;
+            border: 1px solid rgb(200,200,200);
+            padding: 4px;
+            font: 700 9pt "Montserrat";
+            color: black;
+        }
+        QLabel {
+            background-color: rgb(0,71,255);
+            padding: 4px;
+            border-radius: 2px;
+            font: 700 9pt "Montserrat";
+            color: rgb(255,255,255);
+        }
+        QPushButton {
+            background-color: rgb(255,255,255);
+            font: 700 9pt "Montserrat";
+            color: rgb(0,71,255);
+            border: none;
+            border-radius: 5px;
+            padding: 4px 10px;
+        }
+        QPushButton:hover {
+            background-color: rgb(0,71,255);
+            border: 1px solid rgb(0,71,255);
+            color: rgb(255,255,255);
+        }
+        QSpinBox, QDoubleSpinBox {
+            color: black;
+            background-color: white;
+            font: 700 9pt "Montserrat";
+            border: 1px solid rgb(200,200,200);
+            border-radius: 4px;
+        }
+    )";
+
+
     QModelIndex currentIndex = ui->stockTableView->currentIndex();
     if (!currentIndex.isValid()) {
-        QMessageBox::warning(this, "Edit", "Please select an item to edit.");
+        QMessageBox warningBox(this);
+        warningBox.setWindowTitle("Edit");
+        warningBox.setText("Please select an item to edit. ✋");
+        warningBox.setIcon(QMessageBox::Warning);
+        warningBox.setStandardButtons(QMessageBox::Ok);
+
+        // Unique styleSheet
+        warningBox.setStyleSheet(R"(
+            QLabel {
+                color: rgb(255,255,255);
+            }
+            QMessageBox {
+                background-color: rgb(0,71,255);
+                font: 700 9pt "Montserrat";
+                color: rgb(255,255,255);
+                border: none;
+            }
+            QPushButton {
+                background-color: rgb(255,0,0);
+                font: 700 9pt "Montserrat";
+                color: rgb(255,255,255);
+                border: 1px solid rgb(255,0,0);
+                border-radius: 5px;
+                padding: 4px 10px;
+            }
+            QPushButton:hover {
+                background-color: rgb(255,255,255);
+                color: rgb(255,0,0);
+            }
+        )");
+        warningBox.exec();
         return;
     }
+
 
     StockItem item = stockModel->getItem(currentIndex.row());
     bool ok;
 
-    QString productName = QInputDialog::getText(this, "Edit Product", "Product Name:", QLineEdit::Normal, item.productName, &ok);
-    if (!ok) return;
+    // Product Name
+    QInputDialog nameDialog(this);
+    nameDialog.setWindowTitle("Edit Product");
+    nameDialog.setLabelText("Product Name:");
+    nameDialog.setTextValue(item.productName);
+    nameDialog.setStyleSheet(inputDialogStyle);
+    if (nameDialog.exec() == QDialog::Accepted) {
+        item.productName = nameDialog.textValue();
+    } else {
+        return;
+    }
 
-    double price = QInputDialog::getDouble(this, "Edit Product", "Price:", item.price, 0.0, 1000000.0, 2, &ok);
-    if (!ok) return;
+    // Price
+    QInputDialog priceDialog(this);
+    priceDialog.setWindowTitle("Edit Product");
+    priceDialog.setLabelText("Price:");
+    priceDialog.setInputMode(QInputDialog::DoubleInput);
+    priceDialog.setDoubleDecimals(2);
+    priceDialog.setDoubleRange(0.0, 1000000.0);
+    priceDialog.setDoubleValue(item.price);
+    priceDialog.setStyleSheet(inputDialogStyle);
+    if (priceDialog.exec() == QDialog::Accepted) {
+        item.price = priceDialog.doubleValue();
+    } else {
+        return;
+    }
 
-    int stock = QInputDialog::getInt(this, "Edit Product", "Stock:", item.stock, 0, 1000000, 1, &ok);
-    if (!ok) return;
-
-    item.productName = productName;
-    item.price = price;
-    item.stock = stock;
-    item.remaining = stock - item.sold;
+    // Stock
+    QInputDialog stockDialog(this);
+    stockDialog.setWindowTitle("Edit Product");
+    stockDialog.setLabelText("Stock:");
+    stockDialog.setInputMode(QInputDialog::IntInput);
+    stockDialog.setIntRange(0, 1000000);
+    stockDialog.setIntValue(item.stock);
+    stockDialog.setStyleSheet(inputDialogStyle);
+    if (stockDialog.exec() == QDialog::Accepted) {
+        item.stock = stockDialog.intValue();
+        item.remaining = item.stock - item.sold;
+    } else {
+        return;
+    }
 
     stockModel->updateItem(currentIndex.row(), item);
 }
@@ -269,12 +375,74 @@ void MainWindow::onDeleteButtonClicked()
 {
     QModelIndex currentIndex = ui->stockTableView->currentIndex();
     if (!currentIndex.isValid()) {
-        QMessageBox::warning(this, "Delete", "Please select an item to delete.");
+        QMessageBox warningBox(this);
+        warningBox.setWindowTitle("Delete");
+        warningBox.setText("Please select an item to delete. ❌");
+        warningBox.setIcon(QMessageBox::Warning);
+        warningBox.setStandardButtons(QMessageBox::Ok);
+
+        // unique styleSheet
+        warningBox.setStyleSheet(R"(
+            QLabel {
+                color: rgb(255,255,255);
+            }
+            QMessageBox {
+                background-color: rgb(0,71,255);
+                font: 700 9pt "Montserrat";
+                color: rgb(255,255,255);
+                border: none;
+            }
+            QPushButton {
+                background-color: rgb(255,0,0);
+                font: 700 9pt "Montserrat";
+                color: rgb(255,255,255);
+                border: 1px solid rgb(255,0,0);
+                border-radius: 5px;
+                padding: 4px 10px;
+            }
+            QPushButton:hover {
+                background-color: rgb(255,255,255);
+                color: rgb(255,0,0);
+            }
+        )");
+        warningBox.exec();
         return;
     }
 
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete", "Are you sure you want to delete this item?", QMessageBox::Yes | QMessageBox::No);
-    if (reply == QMessageBox::Yes) stockModel->removeItem(currentIndex.row());
+    QMessageBox confirmBox(this);
+    confirmBox.setWindowTitle("Delete");
+    confirmBox.setText("Are you sure you want to delete this item? 🗑️");
+    confirmBox.setIcon(QMessageBox::Question);
+    confirmBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    confirmBox.setDefaultButton(QMessageBox::No);
+
+    // unique styleSheet
+    confirmBox.setStyleSheet(R"(
+        QLabel {
+            color: rgb(255,255,255);
+        }
+        QMessageBox {
+            background-color: rgb(0,71,255);
+            font: 700 9pt "Montserrat";
+            color: rgb(255,255,255);
+            border: none;
+        }
+        QPushButton {
+            background-color: rgb(255,255,255);
+            font: 700 9pt "Montserrat";
+            color: rgb(0,71,255);
+            border: none;
+            border-radius: 5px;
+            padding: 4px 10px;
+        }
+        QPushButton:hover {
+            color: rgb(255,0,0);
+        }
+    )");
+
+    if (confirmBox.exec() == QMessageBox::Yes) {
+        stockModel->removeItem(currentIndex.row());
+    }
 }
 
 void MainWindow::onFilterTextChanged(const QString &text) {
