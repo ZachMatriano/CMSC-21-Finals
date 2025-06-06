@@ -266,6 +266,56 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="layoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>371</y>
+            <width>300</width>
+            <height>40</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QPushButton" name="backupButton">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(211, 211, 211);
+               border-radius: 15px;
+               font: 700 9pt &quot;Montserrat&quot;;
+               color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Backup Data</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="restoreButton">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(211, 211, 211);
+               border-radius: 15px;
+               font: 700 9pt &quot;Montserrat&quot;;
+               color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Restore Data</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </widget>
        <widget class="QWidget" name="transactionsTab">

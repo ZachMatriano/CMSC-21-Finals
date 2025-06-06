@@ -331,4 +331,13 @@ void StockModel::readDataFromFile() {
     }
 
     file.close();
+}
+
+void StockModel::clear() {
+    beginResetModel();
+    items.clear();
+    filteredItems.clear();
+    // Delete the file
+    std::remove(DATA_FILE.toStdString().c_str());
+    endResetModel();
 } 

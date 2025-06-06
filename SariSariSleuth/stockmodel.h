@@ -36,10 +36,10 @@ class StockModel : public QAbstractTableModel {
         void writeItemToFile(const StockItem &item);
         void updateItemInFile(const StockItem &oldItem, const StockItem &newItem);
         void deleteItemFromFile(int id);
-        void readDataFromFile(); // New method to read initial data
 
     public:
         explicit StockModel(QObject *parent = nullptr); // Constructor
+        void readDataFromFile(); // New method to read initial data
 
     // Required overrides for QAbstractTableModel: see in the documentation
         int rowCount(const QModelIndex &parent = QModelIndex()) const override; // const = nothing should change in the object
@@ -55,6 +55,7 @@ class StockModel : public QAbstractTableModel {
         void updateItem(int row, const StockItem &item);
         StockItem getItem(int row) const;
         void filterItems(const QString &text);
+        void clear();
 };
 
 #endif

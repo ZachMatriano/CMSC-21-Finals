@@ -31,6 +31,8 @@ class MainWindow : public QMainWindow {
         void onDeleteTransactionClicked();
         void onTimePeriodChanged(int index);
         void onDaysToStockChanged(int days);
+        void onBackupButtonClicked();
+        void onRestoreButtonClicked();
 
     private:
         Ui::MainWindow *ui;
