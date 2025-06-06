@@ -132,8 +132,9 @@ void StockModel::writeItemToFile(const StockItem &item) {
     // Create Data directory if it doesn't exist
     QDir().mkpath("Data");
     
-    std::ofstream file(DATA_FILE.toStdString(), std::ios::app); // Append
+    std::ofstream file(DATA_FILE.toStdString(), std::ios::app);
     if (file.is_open()) {
+        std::cout << "what the heck." << std::endl;
         file << item.id << "|" << item.productName.toStdString() << "|" << item.price << "|" << item.stock << "|" << item.remaining << "|" << item.sold << std::endl;
         file.close();
     }
@@ -290,43 +291,43 @@ void StockModel::readDataFromFile() {
     QDir().mkpath("Data");
     
     std::ifstream file(DATA_FILE.toStdString());
-    if (!file.is_open()) { //Only happens upon no data
-        return;
+    if (!file.is_open()) {
+        return; // File doesn't exist yet, that's okay
     }
 
     std::string line;
     while (std::getline(file, line)) {
         std::istringstream iss(line);
-        std::string thing;
+        std::string token;
         StockItem item;
 
         // Read ID
-        std::getline(iss, thing, '|');
-        item.id = std::stoi(thing);
+        std::getline(iss, token, '|');
+        item.id = std::stoi(token);
 
         // Read Product Name
-        std::getline(iss, thing, '|');
-        item.productName = QString::fromStdString(thing);
+        std::getline(iss, token, '|');
+        item.productName = QString::fromStdString(token);
 
         // Read Price
-        std::getline(iss, thing, '|');
-        item.price = std::stod(thing);
+        std::getline(iss, token, '|');
+        item.price = std::stod(token);
 
         // Read Stock
-        std::getline(iss, thing, '|');
-        item.stock = std::stoi(thing);
+        std::getline(iss, token, '|');
+        item.stock = std::stoi(token);
 
         // Read Remaining
-        std::getline(iss, thing, '|');
-        item.remaining = std::stoi(thing);
+        std::getline(iss, token, '|');
+        item.remaining = std::stoi(token);
 
         // Read Sold
-        std::getline(iss, thing, '|');
-        item.sold = std::stoi(thing);
+        std::getline(iss, token, '|');
+        item.sold = std::stoi(token);
 
         // Add to both lists
         items.append(item);
-        filteredItems.append(item); // Unfortunately I do not want to circumvent adding this one line, so here it stays
+        filteredItems.append(item);
     }
 
     file.close();

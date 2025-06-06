@@ -9,13 +9,15 @@ AnalyticsModel::AnalyticsModel(QObject *parent)
     // Initial data load will be triggered by MainWindow after all models are initialized
 }
 
-int AnalyticsModel::rowCount(const QModelIndex &parent) const {
+int AnalyticsModel::rowCount(const QModelIndex &parent) const
+{
     if (parent.isValid())
         return 0;
     return analyticsData.size();
 }
 
-QVariant AnalyticsModel::data(const QModelIndex &index, int role) const {
+QVariant AnalyticsModel::data(const QModelIndex &index, int role) const
+{
     if (!index.isValid() || index.row() >= analyticsData.size())
         return QVariant();
 
@@ -29,20 +31,26 @@ QVariant AnalyticsModel::data(const QModelIndex &index, int role) const {
     return QVariant();
 }
 
-void AnalyticsModel::updateAnalytics(const QVector<ConfirmedTransaction>& transactions, TimePeriod period) {
+void AnalyticsModel::setTimePeriod(TimePeriod period)
+{
+    if (currentPeriod != period) {
+        currentPeriod = period;
+        // Trigger update of the view
+        beginResetModel();
+        endResetModel();
+    }
+}
 
-    // Called by onTimePeriodChanged
-
+void AnalyticsModel::updateAnalytics(const QVector<ConfirmedTransaction>& transactions, TimePeriod period)
+{
     beginResetModel();
     currentPeriod = period;
     calculateAnalytics(transactions);
     endResetModel();
 }
 
-void AnalyticsModel::calculateAnalytics(const QVector<ConfirmedTransaction>& transactions) {
-
-    // Called by upateAnalytics
-
+void AnalyticsModel::calculateAnalytics(const QVector<ConfirmedTransaction>& transactions)
+{
     QDateTime now = QDateTime::currentDateTime();
     QDateTime cutoff;
     
@@ -82,18 +90,15 @@ void AnalyticsModel::calculateAnalytics(const QVector<ConfirmedTransaction>& tra
 
     // Calculate sales rates and convert to vector
     analyticsData.clear();
-
-    // I'm pretty sure the type of i here is QMap<QString, ProductAnalytics>::iterator but
-    // its easier to type auto HAAHAHHAHAAH
-    for (auto i = productMap.begin(); i != productMap.end(); i++) {
-        ProductAnalytics &analytics = i.value();
+    for (auto it = productMap.begin(); it != productMap.end(); ++it) {
+        ProductAnalytics &analytics = it.value();
         analytics.salesRate = static_cast<double>(analytics.totalSold) / analytics.timePeriodDays;
         analyticsData.append(analytics);
     }
 
     // Sort by sales rate (highest first)
     std::sort(analyticsData.begin(), analyticsData.end(),
-              [](const ProductAnalytics &a, const ProductAnalytics &b) { // Woohoo, lambda expression ni
+              [](const ProductAnalytics &a, const ProductAnalytics &b) {
                   return a.salesRate > b.salesRate;
               });
 } 
