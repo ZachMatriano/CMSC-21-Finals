@@ -531,12 +531,12 @@ color: rgb(255, 255, 255);</string>
               </sizepolicy>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 255, 255);
-selection-background-color: rgb(0, 71, 255);
-font: 600 12pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255);
-selection-color: rgb(255, 255, 255);
-border-radius: 0px;
+              <string notr="true">color: rgb(0, 71, 255);
+background-color: rgb(255, 255, 255);
+                selection-background-color: rgb(230, 240, 255);
+                selection-color: rgb(0, 71, 255);
+				font: 600 12pt &quot;Montserrat&quot;;
+  border: 1.5px solid rgb(0, 71, 255);
               </string>
              </property>
              <property name="frameShape">
@@ -756,8 +756,8 @@ QPushButton:hover {
 	border-radius: 0px;
 	color: rgb(0, 71, 255);
 	background-color: rgb(255, 255, 255);
-    selection-background-color: rgb(0, 71, 255);
-    selection-color: rgb(255, 255, 255);
+    selection-background-color: rgb(230, 240, 255);
+    selection-color: rgb(0, 71, 255);
 	font: 500 11pt &quot;Montserrat&quot;;
 }
 
