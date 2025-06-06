@@ -5,7 +5,6 @@
 ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : QDialog(parent) , stockModel(model) {
     setWindowTitle("Select Item");
     setMinimumWidth(700);
-
     // Create table view
     tableView = new QTableView(this);
     tableView->setModel(stockModel);
@@ -20,10 +19,11 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "    color: black;"
         "    background-color: rgb(255, 255, 255);"
         "    font: 500 9pt \"Montserrat\";"
+        "    color: rgb();"
         "    border: none;"
         "    border-bottom-left-radius: 10px;"
         "    border-bottom-right-radius: 10px;"
-        "    gridline-color: rgb(220, 220, 220);"
+        "    gridline: none;"
         "}"
         "QTableView::item:selected {"
         "    background-color: rgb(230, 240, 255);"

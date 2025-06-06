@@ -48,11 +48,11 @@ QVariant TransactionModel::headerData(int section, Qt::Orientation orientation, 
 
     if (orientation == Qt::Horizontal) {
         switch (section) {
-            case 0: return "Transaction ID";
-            case 1: return "Product Name";
-            case 2: return "Price";
-            case 3: return "Quantity";
-            case 4: return "Timestamp";
+            case 0: return "Transaction ID 🎫";
+            case 1: return "Product Name 🛍️";
+            case 2: return "Price 💥";
+            case 3: return "Quantity 📦";
+            case 4: return "Timestamp ⏰";
             default: return QVariant();
         }
     }
