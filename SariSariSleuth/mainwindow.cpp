@@ -104,11 +104,6 @@ MainWindow::MainWindow(QWidget *parent)
 // DESTRUCTOR
 MainWindow::~MainWindow() {
     delete ui;
-    delete stockModel;
-    delete transactionModel;
-    delete confirmedTransactionModel;
-    delete analyticsModel;
-    delete howMuchModel;
 }
 
 // TAB 3
@@ -579,15 +574,13 @@ void MainWindow::onRestoreButtonClicked() {
 // TAB 2
 void MainWindow::onConfirmTransactionClicked()
 {
-    QModelIndex currentIndex = ui->stockTableView->currentIndex();
+    QModelIndex currentIndex = ui->transactionTableView->currentIndex();
     if (!currentIndex.isValid()) {
         QMessageBox warningBox(this);
         warningBox.setWindowTitle("Delete");
-        warningBox.setText("Please select an item to delete. ❌");
+        warningBox.setText("Please select an item to confirm. ✅");
         warningBox.setIcon(QMessageBox::Warning);
         warningBox.setStandardButtons(QMessageBox::Ok);
-
-        // unique styleSheet
         warningBox.setStyleSheet(R"(
             QLabel {
                 color: rgb(255,255,255);
@@ -599,22 +592,21 @@ void MainWindow::onConfirmTransactionClicked()
                 border: none;
             }
             QPushButton {
-                background-color: rgb(255,0,0);
+                background-color: rgb(0,255,0);
                 font: 700 9pt "Montserrat";
                 color: rgb(255,255,255);
-                border: 1px solid rgb(255,0,0);
+                border: 1px solid rgb(0,255,0);
                 border-radius: 5px;
                 padding: 4px 10px;
             }
             QPushButton:hover {
                 background-color: rgb(255,255,255);
-                color: rgb(255,0,0);
+                color: rgb(0,255,0);
             }
         )");
         warningBox.exec();
         return;
     }
-
 
     Transaction transaction = transactionModel->getTransaction(currentIndex.row());
 
@@ -658,15 +650,13 @@ void MainWindow::onConfirmTransactionClicked()
 
 void MainWindow::onDeleteTransactionClicked()
 {
-    QModelIndex currentIndex = ui->stockTableView->currentIndex();
+    QModelIndex currentIndex = ui->transactionTableView->currentIndex();
     if (!currentIndex.isValid()) {
         QMessageBox warningBox(this);
         warningBox.setWindowTitle("Delete");
         warningBox.setText("Please select an item to delete. ❌");
         warningBox.setIcon(QMessageBox::Warning);
         warningBox.setStandardButtons(QMessageBox::Ok);
-
-        // unique styleSheet
         warningBox.setStyleSheet(R"(
             QLabel {
                 color: rgb(255,255,255);
