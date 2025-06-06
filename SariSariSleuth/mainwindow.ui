@@ -18,6 +18,21 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
     <item>
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
@@ -31,443 +46,456 @@ border-radius: 10px;</string>
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <widget class="QFrame" name="upperContainer">
-       <property name="geometry">
-        <rect>
-         <x>-1</x>
-         <y>-20</y>
-         <width>781</width>
-         <height>111</height>
-        </rect>
+      <layout class="QVBoxLayout" name="frameLayout">
+       <property name="spacing">
+        <number>10</number>
        </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255); border-radius: 25px;</string>
+       <property name="leftMargin">
+        <number>10</number>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
+       <property name="topMargin">
+        <number>10</number>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
+       <property name="rightMargin">
+        <number>10</number>
        </property>
-       <widget class="QWidget" name="horizontalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>29</y>
-          <width>671</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="padding">
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="salesButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(); 
-             font: 700 9pt &quot;Montserrat&quot;;
-             color: rgb(0, 71, 255)
-            </string>
-           </property>
-           <property name="text">
-            <string>Sales</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="transactionsButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb();
-             font: 700 9pt &quot;Montserrat&quot;;
-             color: rgb(0, 71, 255)</string>
-           </property>
-           <property name="text">
-            <string>Transactions</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="loggingButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb();
-             font: 700 9pt &quot;Montserrat&quot;;
-             color: rgb(0, 71, 255)</string>
-           </property>
-           <property name="text">
-            <string>Stock Logging</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_6">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="analyticsButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb();
-             font: 700 9pt &quot;Montserrat&quot;;
-             color: rgb(0, 71, 255)</string>
-           </property>
-           <property name="text">
-            <string>Analytics</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Preferred</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QStackedWidget" name="stackedWidget">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>90</y>
-         <width>711</width>
-         <height>431</height>
-        </rect>
+       <property name="bottomMargin">
+        <number>10</number>
        </property>
-       <property name="currentIndex">
-        <number>3</number>
-       </property>
-       <widget class="QWidget" name="salesTab">
-        <widget class="QWidget" name="bucket" native="true">
-         <property name="geometry">
-          <rect>
-           <x>19</x>
-           <y>20</y>
-           <width>671</width>
-           <height>411</height>
-          </rect>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>150</x>
-            <y>272</y>
-            <width>421</width>
-            <height>51</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QPushButton" name="manualAddButton">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255,255,255);
-               border-radius: 15px;
-               font: 700 9pt &quot;Montserrat&quot;;
-               color: rgb(0, 71, 255);</string>
-             </property>
-             <property name="text">
-              <string>Manual Add</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>371</y>
-            <width>300</width>
-            <height>40</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
-           <item>
-            <widget class="QPushButton" name="backupButton">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(211, 211, 211);
-               border-radius: 15px;
-               font: 700 9pt &quot;Montserrat&quot;;
-               color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Backup Data</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="restoreButton">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(211, 211, 211);
-               border-radius: 15px;
-               font: 700 9pt &quot;Montserrat&quot;;
-               color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Restore Data</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="transactionsTab">
-        <widget class="QWidget" name="bucket_2" native="true">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>30</y>
-           <width>671</width>
-           <height>391</height>
-          </rect>
-         </property>
+       <item>
+        <widget class="QFrame" name="upperContainer">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px </string>
+          <string notr="true">background-color: rgb(255, 255, 255); border-radius: 25px;</string>
          </property>
-         <widget class="QTableView" name="transactionTableView">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>651</width>
-            <height>301</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">			color: rgb(0, 71, 255);
-             background-color: rgb(255, 255, 255);
-             selection-background-color: rgb(230, 240, 255);
-             selection-color: rgb(0, 71, 255);
-			 font: 700 10pt &quot;Montserrat&quot;;
-           </string>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-          </property>
-          <property name="sortingEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-         <widget class="QWidget" name="horizontalLayoutWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>520</x>
-            <y>330</y>
-            <width>121</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="padding">
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="salesButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(); 
+              font: 700 9pt &quot;Montserrat&quot;;
+              color: rgb(0, 71, 255)
+             </string>
+            </property>
+            <property name="text">
+             <string>Sales</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="transactionsButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb();
+              font: 700 9pt &quot;Montserrat&quot;;
+              color: rgb(0, 71, 255)</string>
+            </property>
+            <property name="text">
+             <string>Transactions</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="loggingButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb();
+              font: 700 9pt &quot;Montserrat&quot;;
+              color: rgb(0, 71, 255)</string>
+            </property>
+            <property name="text">
+             <string>Stock Logging</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="analyticsButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb();
+              font: 700 9pt &quot;Montserrat&quot;;
+              color: rgb(0, 71, 255)</string>
+            </property>
+            <property name="text">
+             <string>Analytics</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Preferred</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
+         <widget class="QWidget" name="salesTab">
+          <layout class="QVBoxLayout" name="salesLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
            <item>
-            <widget class="QPushButton" name="deleteTransactionButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
+             <property name="sizeType">
+              <enum>QSizePolicy::Policy::Expanding</enum>
              </property>
-             <property name="mouseTracking">
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manualAddButton">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255,255,255);
+                 border-radius: 15px;
+                 font: 700 9pt &quot;Montserrat&quot;;
+                 color: rgb(0, 71, 255);</string>
+               </property>
+               <property name="text">
+                <string>Manual Add</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QPushButton" name="backupButton">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(211, 211, 211);
+                 border-radius: 15px;
+                 font: 700 9pt &quot;Montserrat&quot;;
+                 color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="text">
+                <string>Backup Data</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="restoreButton">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(211, 211, 211);
+                 border-radius: 15px;
+                 font: 700 9pt &quot;Montserrat&quot;;
+                 color: rgb(255, 255, 255);</string>
+               </property>
+               <property name="text">
+                <string>Restore Data</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="transactionsTab">
+          <layout class="QVBoxLayout" name="transactionsLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QTableView" name="transactionTableView">
+             <property name="styleSheet">
+              <string notr="true">			color: rgb(0, 71, 255);
+                background-color: rgb(255, 255, 255);
+                selection-background-color: rgb(230, 240, 255);
+                selection-color: rgb(0, 71, 255);
+				font: 700 10pt &quot;Montserrat&quot;;
+              </string>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+             </property>
+             <property name="sortingEnabled">
               <bool>false</bool>
              </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 0, 0);
-                border-radius: 15px;
-                font: 700 12pt &quot;Montserrat&quot;;
-                color: rgb(255,255,255);
-              </string>
-             </property>
-             <property name="text">
-              <string>Delete </string>
-             </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="horizontalLayoutWidget_3">
-          <property name="geometry">
-           <rect>
-            <x>390</x>
-            <y>330</y>
-            <width>121</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QPushButton" name="confirmButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="focusPolicy">
-              <enum>Qt::FocusPolicy::StrongFocus</enum>
-             </property>
-             <property name="contextMenuPolicy">
-              <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-                background-color: rgb(38, 255, 0);
-                border-radius: 15px;
-                font: 700 12pt &quot;Montserrat&quot;;
-                color: rgb(23, 153, 0);
-              </string>
-             </property>
-             <property name="text">
-              <string>Confirm</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="confirmButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+                  background-color: rgb(38, 255, 0);
+                  border-radius: 15px;
+                  font: 700 12pt &quot;Montserrat&quot;;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 15px;
+                </string>
+               </property>
+               <property name="text">
+                <string>Confirm</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deleteTransactionButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 0, 0);
+                  border-radius: 15px;
+                  font: 700 12pt &quot;Montserrat&quot;;
+                  color: rgb(255,255,255);
+                  padding: 5px 15px;
+                </string>
+               </property>
+               <property name="text">
+                <string>Delete </string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="loggingTab">
-        <widget class="QWidget" name="bucket_3" native="true">
-         <property name="geometry">
-          <rect>
-           <x>19</x>
-           <y>19</y>
-           <width>671</width>
-           <height>391</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px</string>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>651</width>
-            <height>28</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout">
+         <widget class="QWidget" name="loggingTab">
+          <layout class="QVBoxLayout" name="loggingLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
            <item>
             <widget class="QLineEdit" name="filterLineEdit">
              <property name="styleSheet">
@@ -484,209 +512,22 @@ border-radius: 10px;</string>
              </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QTableView" name="stockTableView">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>40</y>
-            <width>651</width>
-            <height>301</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: rgb(0, 71, 255);
+           <item>
+            <widget class="QTableView" name="stockTableView">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <pointsize>9</pointsize>
+               <italic>false</italic>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(0, 71, 255);
 background-color: rgb(255, 255, 255);
-            selection-background-color: rgb(230, 240, 255);
-            selection-color: rgb(0, 71, 255);
-			font: 700 9pt &quot;Montserrat&quot;;
-           </string>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-          </property>
-          <property name="sortingEnabled">
-           <bool>false</bool>
-          </property>
-         </widget>
-         <widget class="QWidget" name="horizontalLayoutWidget_4">
-          <property name="geometry">
-           <rect>
-            <x>390</x>
-            <y>345</y>
-            <width>271</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_8">
-           <item>
-            <widget class="QPushButton" name="addButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(38, 255, 0);
-                border-radius: 15px;
-                font: 700 12pt &quot;Montserrat&quot;;
-                color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Add</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="editButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(211, 211, 211);
-                border-radius: 15px;
-                font: 700 12pt &quot;Montserrat&quot;;
-                color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Edit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="deleteButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 0, 0);
-                border-radius: 15px;
-                font: 700 12pt &quot;Montserrat&quot;;
-                color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="analyticsTab">
-        <widget class="QWidget" name="bucket_4" native="true">
-         <property name="geometry">
-          <rect>
-           <x>19</x>
-           <y>19</y>
-           <width>671</width>
-           <height>430</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255,255,255); border-radius: 15px</string>
-         </property>
-         <widget class="QGroupBox" name="productsToStockGroup">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>651</width>
-            <height>181</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-            background-color: rgb(255,255,255);
-            color: rgb(0, 71, 255);
-            font: 700 9pt &quot;Montserrat&quot;;
-            border: 1px solid rgb(211, 211, 211);
-           </string>
-          </property>
-          <property name="title">
-           <string>Products to Stock</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <property name="topMargin">
-              <number>10</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Time Period:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="timePeriodComboBox">
-               <property name="styleSheet">
-                <string notr="true">
-                 background-color: rgb(211, 211, 211);
-                 border: 2px solid rgb(0, 71, 255);
-                 border-radius: 5px;
-                 color: rgb(0, 71, 255);
-                 padding: 2px;
-                </string>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Last Week</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Last Month</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Last Year</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QListView" name="productsToListView">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">
-                color: rgb(0, 71, 255);
-                background-color: rgb(255, 255, 255);
-                font: 9pt &quot;Montserrat&quot;;
                 selection-background-color: rgb(230, 240, 255);
                 selection-color: rgb(0, 71, 255);
+				font: 700 9pt &quot;Montserrat&quot;;
               </string>
              </property>
              <property name="alternatingRowColors">
@@ -695,102 +536,285 @@ background-color: rgb(255, 255, 255);
              <property name="selectionMode">
               <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
              </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+             </property>
+             <property name="sortingEnabled">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
-          </layout>
-         </widget>
-         <widget class="QGroupBox" name="howMuchToStockGroup">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>200</y>
-            <width>651</width>
-            <height>181</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255,255,255);
-            color: rgb(0, 71, 255);
-            font: 700 9pt &quot;Montserrat&quot;;
-            border: 1px solid rgb(211, 211, 211);
-           </string>
-          </property>
-          <property name="title">
-           <string>How Much to Stock</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <property name="topMargin">
-              <number>10</number>
-             </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Days to Stock For (n):</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="daysToStockSpinBox">
+              <widget class="QPushButton" name="addButton">
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
-                <string notr="true">
-                 background-color: rgb(211, 211, 211);
-                 border: 2px solid rgb(0, 71, 255);
-                 border-radius: 5px;
-                 color: rgb(0, 71, 255);
-                 padding: 2px;
-                </string>
+                <string notr="true">background-color: rgb(38, 255, 0);
+                  border-radius: 15px;
+                  font: 700 12pt &quot;Montserrat&quot;;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 15px;</string>
                </property>
-               <property name="minimum">
-                <number>1</number>
+               <property name="text">
+                <string>Add</string>
                </property>
-               <property name="maximum">
-                <number>365</number>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="editButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="value">
-                <number>7</number>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);
+                  border-radius: 15px;
+                  font: 700 12pt &quot;Montserrat&quot;;
+                  color: rgb(128, 128, 128);
+                  padding: 5px 15px;
+                  border: 2px solid rgb(0, 71, 255);</string>
+               </property>
+               <property name="text">
+                <string>Edit</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deleteButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 0, 0);
+                  border-radius: 15px;
+                  font: 700 12pt &quot;Montserrat&quot;;
+                  color: rgb(255, 255, 255);
+                  padding: 5px 15px;</string>
+               </property>
+               <property name="text">
+                <string>Delete</string>
                </property>
               </widget>
              </item>
             </layout>
            </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="analyticsTab">
+          <layout class="QVBoxLayout" name="analyticsLayout">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
            <item>
-            <widget class="QListView" name="howMuchToListView">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+            <widget class="QGroupBox" name="productsToStockGroup">
              <property name="styleSheet">
               <string notr="true">
+               background-color: rgb(255,255,255);
                color: rgb(0, 71, 255);
-               background-color: rgb(255, 255, 255);
-               font: 9pt &quot;Montserrat&quot;;
-               selection-background-color: rgb(230, 240, 255);
-               selection-color: rgb(0, 71, 255);
+               font: 700 9pt &quot;Montserrat&quot;;
+               border: 1px solid rgb(211, 211, 211);
               </string>
              </property>
-             <property name="alternatingRowColors">
-              <bool>true</bool>
+             <property name="title">
+              <string>Products to Stock</string>
              </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <property name="topMargin">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>Time Period:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="timePeriodComboBox">
+                  <property name="styleSheet">
+                   <string notr="true">
+                    background-color: rgb(211, 211, 211);
+                    border: 2px solid rgb(0, 71, 255);
+                    border-radius: 5px;
+                    color: rgb(0, 71, 255);
+                    padding: 2px;
+                   </string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Last Week</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Last Month</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Last Year</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QListView" name="productsToListView">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+                   color: rgb(0, 71, 255);
+                   background-color: rgb(255, 255, 255);
+                   font: 9pt &quot;Montserrat&quot;;
+                   selection-background-color: rgb(230, 240, 255);
+                   selection-color: rgb(0, 71, 255);
+                 </string>
+                </property>
+                <property name="alternatingRowColors">
+                 <bool>true</bool>
+                </property>
+                <property name="selectionMode">
+                 <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="howMuchToStockGroup">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255,255,255);
+               color: rgb(0, 71, 255);
+               font: 700 9pt &quot;Montserrat&quot;;
+               border: 1px solid rgb(211, 211, 211);
+              </string>
              </property>
+             <property name="title">
+              <string>How Much to Stock</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_6">
+                <property name="topMargin">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="text">
+                   <string>Days to Stock For (n):</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="daysToStockSpinBox">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
+                    background-color: rgb(211, 211, 211);
+                    border: 2px solid rgb(0, 71, 255);
+                    border-radius: 5px;
+                    color: rgb(0, 71, 255);
+                    padding: 2px;
+                   </string>
+                  </property>
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>365</number>
+                  </property>
+                  <property name="value">
+                   <number>7</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QListView" name="howMuchToListView">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">
+                  color: rgb(0, 71, 255);
+                  background-color: rgb(255, 255, 255);
+                  font: 9pt &quot;Montserrat&quot;;
+                  selection-background-color: rgb(230, 240, 255);
+                  selection-color: rgb(0, 71, 255);
+                 </string>
+                </property>
+                <property name="alternatingRowColors">
+                 <bool>true</bool>
+                </property>
+                <property name="selectionMode">
+                 <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
          </widget>
         </widget>
-       </widget>
-      </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -801,11 +825,10 @@ background-color: rgb(255, 255, 255);
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
