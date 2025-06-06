@@ -6,5 +6,6 @@
         <file>clear-transactions.png</file>
         <file>main-bg.png</file>
         <file>sold.png</file>
+        <file>logo-with-text.png</file>
     </qresource>
 </RCC>
