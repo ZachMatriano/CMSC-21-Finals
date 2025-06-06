@@ -533,6 +533,7 @@ color: rgb(255, 255, 255);</string>
              <property name="styleSheet">
               <string notr="true">color: rgb(0, 71, 255);
 background-color: rgb(255, 255, 255);
+                selection-background-color: rgb(230, 240, 255);
                 selection-color: rgb(0, 71, 255);
 				font: 600 12pt &quot;Montserrat&quot;;
   border: 1.5px solid rgb(0, 71, 255);
