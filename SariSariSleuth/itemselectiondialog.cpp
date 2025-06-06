@@ -15,7 +15,6 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableView->verticalHeader()->setVisible(false);
 
-    // Apply your custom stylesheet
     tableView->setStyleSheet(
         "QTableView {"
         "    color: black;"
@@ -40,7 +39,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "}"
         );
 
-    // Create quantity spinbox
+    // Quantity spinbox
     quantitySpinBox = new QSpinBox(this);
     quantitySpinBox->setMinimum(1);
     quantitySpinBox->setMaximum(9999);
@@ -84,11 +83,11 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         );
 
 
-    // Create buttons
+    // Buttons
     acceptButton = new QPushButton("Accept", this);
     cancelButton = new QPushButton("Cancel", this);
 
-    // Create layouts
+    // Layouts
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QHBoxLayout *buttonLayout = new QHBoxLayout();
 
