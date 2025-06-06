@@ -43,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Set up the table view for transactions
     ui->transactionTableView->setModel(transactionModel);
     ui->transactionTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->transactionTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->transactionTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->transactionTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Set up the analytics list views
     ui->productsToListView->setModel(analyticsModel);
