@@ -34,6 +34,9 @@ class MainWindow : public QMainWindow {
         void onBackupButtonClicked();
         void onRestoreButtonClicked();
 
+    protected:
+        void keyPressEvent(QKeyEvent *event) override;
+
     private:
         Ui::MainWindow *ui;
         StockModel *stockModel;

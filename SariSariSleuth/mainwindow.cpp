@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QFileDialog>
+#include <QKeyEvent>
 #include <algorithm>
 #include <QDateTime>
 #include <QDir>
@@ -527,4 +528,23 @@ void MainWindow::onDaysToStockChanged(int days)
     }
     
     howMuchModel->updateRecommendations(analytics, days, stockModel);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    switch (event->key()) {
+        case Qt::Key_1:
+            ui->stackedWidget->setCurrentWidget(ui->salesTab);
+            break;
+        case Qt::Key_2:
+            ui->stackedWidget->setCurrentWidget(ui->transactionsTab);
+            break;
+        case Qt::Key_3:
+            ui->stackedWidget->setCurrentWidget(ui->loggingTab);
+            break;
+        case Qt::Key_4:
+            ui->stackedWidget->setCurrentWidget(ui->analyticsTab);
+            break;
+        default:
+            QMainWindow::keyPressEvent(event);
+    }
 }
