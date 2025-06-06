@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1486</width>
+    <width>1484</width>
     <height>937</height>
    </rect>
   </property>
@@ -233,7 +233,7 @@ border-radius: 10px;</string>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="salesTab">
           <layout class="QVBoxLayout" name="salesLayout">
@@ -540,7 +540,7 @@ background-color: rgb(255, 255, 255);
               </string>
              </property>
              <property name="alternatingRowColors">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="selectionMode">
               <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
@@ -551,16 +551,26 @@ background-color: rgb(255, 255, 255);
              <property name="sortingEnabled">
               <bool>false</bool>
              </property>
-             <property name="cornerButtonEnabled">
-              <bool>false</bool>
-             </property>
-             <attribute name="verticalHeaderVisible">
-              <bool>true</bool>
-             </attribute>
             </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Preferred</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
              <item>
               <spacer name="horizontalSpacer_11">
                <property name="orientation">
@@ -993,12 +1003,6 @@ QPushButton:hover {
                 </item>
                 <item>
                  <widget class="QLabel" name="label_2">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: transparent;
-font: 700 15pt &quot;Montserrat&quot;;
-color: rgb(0, 71, 255);
-padding: 2px;</string>
-                  </property>
                   <property name="frameShape">
                    <enum>QFrame::Shape::NoFrame</enum>
                   </property>
@@ -1133,7 +1137,7 @@ padding: 2px;</string>
                 <item>
                  <widget class="QLabel" name="label_3">
                   <property name="text">
-                   <string>Days to Stock For:</string>
+                   <string>Days to Stock For (n):</string>
                   </property>
                  </widget>
                 </item>
@@ -1228,8 +1232,8 @@ padding: 2px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1486</width>
-     <height>17</height>
+     <width>1484</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

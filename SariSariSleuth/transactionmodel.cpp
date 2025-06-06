@@ -180,40 +180,40 @@ void TransactionModel::readDataFromFile() {
     std::string line;
     while (std::getline(file, line)) {
         std::istringstream iss(line);
-        std::string token;
+        std::string thing;
         Transaction transaction;
 
         // Read Transaction ID
-        std::getline(iss, token, '|');
-        transaction.transactionId = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.transactionId = std::stoi(thing);
         nextTransactionId = std::max(nextTransactionId, transaction.transactionId + 1);
 
         // Read StockItem data
-        std::getline(iss, token, '|');
-        transaction.item.id = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.item.id = std::stoi(thing);
 
-        std::getline(iss, token, '|');
-        transaction.item.productName = QString::fromStdString(token);
+        std::getline(iss, thing, '|');
+        transaction.item.productName = QString::fromStdString(thing);
 
-        std::getline(iss, token, '|');
-        transaction.item.price = std::stod(token);
+        std::getline(iss, thing, '|');
+        transaction.item.price = std::stod(thing);
 
-        std::getline(iss, token, '|');
-        transaction.item.stock = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.item.stock = std::stoi(thing);
 
-        std::getline(iss, token, '|');
-        transaction.item.remaining = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.item.remaining = std::stoi(thing);
 
-        std::getline(iss, token, '|');
-        transaction.item.sold = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.item.sold = std::stoi(thing);
 
         // Read Quantity
-        std::getline(iss, token, '|');
-        transaction.quantity = std::stoi(token);
+        std::getline(iss, thing, '|');
+        transaction.quantity = std::stoi(thing);
 
         // Read Timestamp
-        std::getline(iss, token, '|');
-        transaction.timestamp = QDateTime::fromString(QString::fromStdString(token), "yyyy-MM-dd hh:mm:ss");
+        std::getline(iss, thing, '|');
+        transaction.timestamp = QDateTime::fromString(QString::fromStdString(thing), "yyyy-MM-dd hh:mm:ss");
 
         // Add to transactions list
         transactions.append(transaction);

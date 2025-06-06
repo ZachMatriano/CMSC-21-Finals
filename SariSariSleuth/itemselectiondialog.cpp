@@ -1,14 +1,40 @@
 #include "itemselectiondialog.h"
 #include <QLabel>
 #include <QItemSelectionModel>
+#include <QLineEdit>
+#include <QSortFilterProxyModel>
 
 ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : QDialog(parent) , stockModel(model) {
     setWindowTitle("Select Item");
     setMinimumWidth(700);
 
+<<<<<<< HEAD
+=======
+    // Create search bar
+    searchBar = new QLineEdit(this);
+    searchBar->setPlaceholderText("Search items...");
+    searchBar->setStyleSheet(
+        "QLineEdit {"
+        "    color: rgb(0, 71, 255);"
+        "    background-color: rgb(255, 255, 255);"
+        "    font: 500 9pt \"Montserrat\";"
+        "    padding: 6px;"
+        "    border: 1px solid rgb(200, 200, 200);"
+        "    border-radius: 4px;"
+        "}"
+    );
+
+    // Create proxy model for filtering
+    proxyModel = new QSortFilterProxyModel(this);
+    proxyModel->setSourceModel(stockModel);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    proxyModel->setFilterKeyColumn(1);  // Filter only on the product name column
+    proxyModel->setFilterRole(Qt::DisplayRole);  // Filter on the display text
+
+>>>>>>> parent of a51bff2 (changed the appearances of not valid cases)
     // Create table view
     tableView = new QTableView(this);
-    tableView->setModel(stockModel);
+    tableView->setModel(proxyModel);
     tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -18,7 +44,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     tableView->setStyleSheet(
         "QTableView {"
         "    color: black;"
-        "    background-color: rgb(255, 255, 255);"
+        "    background-color: rgb(211, 211, 211);"
         "    font: 500 9pt \"Montserrat\";"
         "    border: none;"
         "    border-bottom-left-radius: 10px;"
@@ -26,11 +52,12 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
         "    gridline-color: rgb(220, 220, 220);"
         "}"
         "QTableView::item:selected {"
-        "    background-color: rgb(230, 240, 255);"
-        "    color: rgb(0, 71, 255);"
+        "    background-color: rgb(38,255,0);"
+        "    color: rgb(11,129,0);"
         "}"
         "QHeaderView::section {"
-        "    color: rgb(0, 71, 255);"
+        //"    margin-top: 2px;  "
+        "    color:rgb(0, 71, 255);"
         "    background-color: rgb(255, 255, 255);"
         "    font: 800 9pt \"Montserrat\";"
         "    padding: 4px;"
@@ -115,8 +142,9 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     // Layouts
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QHBoxLayout *bottomRowLayout = new QHBoxLayout();
+    mainLayout->addWidget(searchBar);
     mainLayout->addWidget(tableView);
-    bottomRowLayout->addStretch();  // Optional: adds space between spinbox and buttons
+    bottomRowLayout->addStretch();
     bottomRowLayout->addWidget(quantitySpinBox);
     bottomRowLayout->addWidget(acceptButton);
     bottomRowLayout->addWidget(cancelButton);
@@ -124,15 +152,26 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     mainLayout->addLayout(bottomRowLayout);
 
     // Connect signals and slots
+    connect(searchBar, &QLineEdit::textChanged, this, &ItemSelectionDialog::onSearchTextChanged);
     connect(tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ItemSelectionDialog::onItemSelected);
     connect(acceptButton, &QPushButton::clicked, this, &ItemSelectionDialog::onAcceptClicked);
     connect(cancelButton, &QPushButton::clicked, this, &ItemSelectionDialog::onCancelClicked);
 }
 
+ItemSelectionDialog::~ItemSelectionDialog() {
+    delete tableView;
+    delete quantitySpinBox;
+    delete acceptButton;
+    delete cancelButton;
+    delete searchBar;
+    delete proxyModel;
+}
+
 void ItemSelectionDialog::onItemSelected(const QItemSelection &selected, const QItemSelection &deselected) {
     if (!selected.indexes().isEmpty()) {
-        QModelIndex index = selected.indexes().first();
-        selectedItem = stockModel->getItem(index.row());
+        QModelIndex proxyIndex = selected.indexes().first();
+        QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
+        selectedItem = stockModel->getItem(sourceIndex.row());
     }
 }
 
@@ -144,4 +183,10 @@ void ItemSelectionDialog::onAcceptClicked() {
 
 void ItemSelectionDialog::onCancelClicked() {
     reject();
+}
+
+void ItemSelectionDialog::onSearchTextChanged(const QString &text) {
+    proxyModel->setFilterFixedString(text);
+    // Force the view to update
+    tableView->viewport()->update();
 } 
