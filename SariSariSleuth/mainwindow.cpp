@@ -121,11 +121,11 @@ void MainWindow::onAddButtonClicked() {
     // Shared stylesheet
     QString inputDialogStyle = R"(
         QInputDialog {
-            background-color: rgb(0, 71, 255);
+            background-color: rgb(211, 211, 211);
             font: 700 9pt "Montserrat";
             color: black;
             border: 1px solid rgb(220, 220, 220);
-            border-radius: 10px;
+            border-radius: none;
         }
         QLineEdit {
             background-color: white;
@@ -135,22 +135,24 @@ void MainWindow::onAddButtonClicked() {
             color: black;
         }
         QLabel {
-            background-color: rgb(79, 135, 255);
+            background-color: rgb(0, 71, 255);
             padding: 4px;
-            border-radius: 4px;
+            border-radius: 2px;
             font: 700 9pt "Montserrat";
-            color: black;
+            color: rgb(255, 255, 255);
         }
         QPushButton {
-            color: black;
-            background-color: rgb(245, 245, 245);
+            background-color: rgb(255, 255, 255);
             font: 700 9pt "Montserrat";
-            border: 1px solid rgb(200, 200, 200);
+            color: rgb(0, 71, 255);
+            border: none;
             border-radius: 5px;
             padding: 4px 10px;
         }
         QPushButton:hover {
-            background-color: rgb(230, 240, 255);
+            background-color: rgb(0,71,255);
+            border: 1px solid rgb(0, 71, 255);
+            color: rgb(255,255,255);
         }
         QSpinBox {
             color: black;
