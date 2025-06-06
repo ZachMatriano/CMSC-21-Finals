@@ -7,5 +7,6 @@
         <file>main-bg.png</file>
         <file>sold.png</file>
         <file>logo-with-text.png</file>
+        <file>favicon.ico</file>
     </qresource>
 </RCC>
