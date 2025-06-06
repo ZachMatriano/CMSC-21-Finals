@@ -7,7 +7,8 @@
 // CONSTRUCTOR
 ConfirmedTransactionModel::ConfirmedTransactionModel(QObject *parent)
     : QAbstractTableModel(parent)
-    , nextTransactionId(1) {
+    , nextTransactionId(1)
+{
     readDataFromFile();
 }
 

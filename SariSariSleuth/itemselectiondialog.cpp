@@ -1,8 +1,6 @@
 #include "itemselectiondialog.h"
 #include <QLabel>
 #include <QItemSelectionModel>
-#include <QLineEdit>
-#include <QSortFilterProxyModel>
 
 ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : QDialog(parent) , stockModel(model) {
     setWindowTitle("Select Item");
@@ -31,7 +29,7 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
 
     // Create table view
     tableView = new QTableView(this);
-    tableView->setModel(proxyModel);
+    tableView->setModel(stockModel);
     tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -139,9 +137,8 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     // Layouts
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QHBoxLayout *bottomRowLayout = new QHBoxLayout();
-    mainLayout->addWidget(searchBar);
     mainLayout->addWidget(tableView);
-    bottomRowLayout->addStretch();
+    bottomRowLayout->addStretch();  // Optional: adds space between spinbox and buttons
     bottomRowLayout->addWidget(quantitySpinBox);
     bottomRowLayout->addWidget(acceptButton);
     bottomRowLayout->addWidget(cancelButton);
@@ -149,26 +146,15 @@ ItemSelectionDialog::ItemSelectionDialog(StockModel *model, QWidget *parent) : Q
     mainLayout->addLayout(bottomRowLayout);
 
     // Connect signals and slots
-    connect(searchBar, &QLineEdit::textChanged, this, &ItemSelectionDialog::onSearchTextChanged);
     connect(tableView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ItemSelectionDialog::onItemSelected);
     connect(acceptButton, &QPushButton::clicked, this, &ItemSelectionDialog::onAcceptClicked);
     connect(cancelButton, &QPushButton::clicked, this, &ItemSelectionDialog::onCancelClicked);
 }
 
-ItemSelectionDialog::~ItemSelectionDialog() {
-    delete tableView;
-    delete quantitySpinBox;
-    delete acceptButton;
-    delete cancelButton;
-    delete searchBar;
-    delete proxyModel;
-}
-
 void ItemSelectionDialog::onItemSelected(const QItemSelection &selected, const QItemSelection &deselected) {
     if (!selected.indexes().isEmpty()) {
-        QModelIndex proxyIndex = selected.indexes().first();
-        QModelIndex sourceIndex = proxyModel->mapToSource(proxyIndex);
-        selectedItem = stockModel->getItem(sourceIndex.row());
+        QModelIndex index = selected.indexes().first();
+        selectedItem = stockModel->getItem(index.row());
     }
 }
 
@@ -180,10 +166,4 @@ void ItemSelectionDialog::onAcceptClicked() {
 
 void ItemSelectionDialog::onCancelClicked() {
     reject();
-}
-
-void ItemSelectionDialog::onSearchTextChanged(const QString &text) {
-    proxyModel->setFilterFixedString(text);
-    // Force the view to update
-    tableView->viewport()->update();
 } 
