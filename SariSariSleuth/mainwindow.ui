@@ -376,13 +376,14 @@ border: 2px solid rgb(0, 71, 255);</string>
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255,255,255);
-                    border-radius: 25px;
-                    font: 700 24pt &quot;Montserrat&quot;;
-                    color: rgb(0, 71, 255);</string>
+                   <string>background-color: rgb(0,71,255);
+border: none;
+border-radius: 25px;
+font: 700 24pt &quot;Montserrat&quot;;
+color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
-                   <string>ORDER</string>
+                   <string>ORDER 🛒</string>
                   </property>
                  </widget>
                 </item>
@@ -432,9 +433,10 @@ border: 2px solid rgb(0, 71, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(211, 211, 211);
-                     border-radius: 10px;
-                    font: 700 12pt &quot;Montserrat&quot;;
-                    color: rgb(255, 255, 255);</string>
+border: none;
+border-radius: 10px;
+font: 700 12pt "Montserrat";
+color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
                    <string>BACKUP DATA</string>
@@ -451,9 +453,10 @@ border: 2px solid rgb(0, 71, 255);</string>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(211, 211, 211);
-                    border-radius: 10px;
-                    font: 700 12pt &quot;Montserrat&quot;;
-                    color: rgb(255, 255, 255);</string>
+border: none;
+border-radius: 10px;
+font: 700 12pt "Montserrat";
+color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
                    <string>RESTORE DATA</string>
